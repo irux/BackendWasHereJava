@@ -5,10 +5,30 @@
  */
 package com.controllers.backendwashere;
 
+import com.services.backendwashere.LoginService;
+import spark.Route;
+
 /**
  *
  * @author Alejo
  */
 public class LoginController {
     
-}
+    
+    public static Route login(LoginService service)
+    {
+        
+        Route doLogin = (req,resp) -> {
+        
+        return null;
+        
+        };
+        
+        
+        return doLogin;
+    }
+    }
+    
+    
+    
+
