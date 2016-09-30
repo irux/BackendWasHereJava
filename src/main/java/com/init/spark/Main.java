@@ -24,7 +24,7 @@ public class Main {
 
     port(Integer.valueOf(System.getenv("PORT")));
     
-
+    get("/hello", (req,res) -> "HELLO WORLD");
     get("/instagram/login",LoginController.login(new InstagramLoginService()));
     get("/instagram/callback",LoginController.tokenManagment());
     
