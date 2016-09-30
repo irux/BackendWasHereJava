@@ -31,8 +31,8 @@ public class InstagramLoginService extends LoginService {
       
         if(globalService == null){
         InstagramService serviceInstagram = new InstagramAuthService()
-                .apiKey("bc898f7047c443ab89d47ebc3546f1f5")
-                .apiSecret("90c45af985ad447586dc96f7bdef738f")
+                .apiKey("53a4d1817a524046857f07694849f088")
+                .apiSecret("65b3d26fc53e4e26a5f0d6b46b1c8f4c")
                 .callback("http://127.0.0.1:8080/instagram/callback")
                 .build();
         
