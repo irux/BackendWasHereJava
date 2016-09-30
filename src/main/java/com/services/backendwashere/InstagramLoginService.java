@@ -33,7 +33,7 @@ public class InstagramLoginService extends LoginService {
         InstagramService serviceInstagram = new InstagramAuthService()
                 .apiKey("53a4d1817a524046857f07694849f088")
                 .apiSecret("65b3d26fc53e4e26a5f0d6b46b1c8f4c")
-                .callback("http://backendwashere.herokuapp.com/instagram/callback")
+                .callback("http://washereapp.herokuapp.com/instagram/callback")
                 .build();
         
         globalService = serviceInstagram;
