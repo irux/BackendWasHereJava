@@ -1,5 +1,6 @@
 package com.init.spark;
 
+import com.controllers.backendwashere.LoginController;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import spark.ModelAndView;
 import static spark.Spark.get;
 
 import com.heroku.sdk.jdbc.DatabaseUrl;
+import com.services.backendwashere.InstagramLoginService;
+import com.interfaces.backendwashere.LoginService;
 
 public class Main {
 
@@ -22,7 +25,9 @@ public class Main {
     port(Integer.valueOf(System.getenv("PORT")));
     
 
-    get("/", (req, res) -> "Hello World");
+    get("/instagram/login",LoginController.login(new InstagramLoginService()));
+    get("/instagram/callback",LoginController.tokenManagment());
+    
 
   }
 

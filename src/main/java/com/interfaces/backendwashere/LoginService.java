@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.services.backendwashere;
+package com.interfaces.backendwashere;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,8 +15,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public abstract class LoginService {
     
     
+    protected String token;
+    protected String url;
     
-    public abstract void login();
+    
+    public abstract String login();
     public abstract String getUser();
     public abstract String getServiceToken();
     public String getTokenLogin()
@@ -27,6 +30,8 @@ public abstract class LoginService {
         
         return null;
     }
+    
+    public abstract void setToken(String token);
     
     
     

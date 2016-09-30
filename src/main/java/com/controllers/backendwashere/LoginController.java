@@ -5,7 +5,10 @@
  */
 package com.controllers.backendwashere;
 
-import com.services.backendwashere.LoginService;
+import com.interfaces.backendwashere.LoginService;
+import com.services.backendwashere.InstagramLoginService;
+import org.jinstagram.auth.model.Verifier;
+import org.jinstagram.auth.oauth.InstagramService;
 import spark.Route;
 
 /**
@@ -20,13 +23,38 @@ public class LoginController {
         
         Route doLogin = (req,resp) -> {
         
-        return null;
+        String urlLogin =  service.login();
+        
+        return urlLogin;
         
         };
         
         
         return doLogin;
     }
+    
+    
+    public static Route tokenManagment()
+    {
+        Route tokenManager = (req,resp) -> {
+            
+            InstagramLoginService service = new InstagramLoginService();
+            
+            
+            
+           String token = req.queryParams("code");
+            
+           service.setToken(token);
+           
+           
+            
+            return "Your token code is : " + req.queryParams("code") + " and your user name is : " ;
+            
+        };
+        
+        return tokenManager;
+    }
+    
     }
     
     
