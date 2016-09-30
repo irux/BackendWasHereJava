@@ -65,7 +65,7 @@
           <appendAssemblyId>false</appendAssemblyId>
           <archive>
             <manifest>
-              <mainClass>Main</mainClass>
+              <mainClass>com.init.spark.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
