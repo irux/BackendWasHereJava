@@ -48,7 +48,7 @@ public class LoginController {
            
            
             
-            return "Your token code is : " + req.queryParams("code") + " and your user name is : " ;
+            return "Your token code is : " + req.queryParams("code") + " and your user name is : " + service.getUser() ;
             
         };
         

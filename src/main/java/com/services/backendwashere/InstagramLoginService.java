@@ -22,7 +22,7 @@ import org.jinstagram.exceptions.InstagramException;
  */
 public class InstagramLoginService extends LoginService {
 
-     private static InstagramService globalService;
+     private static InstagramService globalService = null;
      private Instagram instagramAccount;
     
     @Override
@@ -31,9 +31,9 @@ public class InstagramLoginService extends LoginService {
       
         if(globalService == null){
         InstagramService serviceInstagram = new InstagramAuthService()
-                .apiKey("53a4d1817a524046857f07694849f088")
-                .apiSecret("65b3d26fc53e4e26a5f0d6b46b1c8f4c")
-                .callback("http://washereapp.herokuapp.com/instagram/callback")
+                .apiKey("bc898f7047c443ab89d47ebc3546f1f5")
+                .apiSecret("90c45af985ad447586dc96f7bdef738f")
+                .callback("http://127.0.0.1:8080/instagram/callback")
                 .build();
         
         globalService = serviceInstagram;
@@ -86,6 +86,9 @@ public class InstagramLoginService extends LoginService {
     @Override
     public void setToken(String token) {
         
+        System.out.println("Hier ist the token " + token);
+        System.out.println("Hier ist die variable : " + globalService);
+        
         super.token = token;
     
         Verifier verifyToken = new Verifier(token);
@@ -94,7 +97,7 @@ public class InstagramLoginService extends LoginService {
         
         Instagram account = new Instagram(accesToken);
         
-        
+        instagramAccount = account;
         
 
         

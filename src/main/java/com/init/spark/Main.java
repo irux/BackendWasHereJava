@@ -22,10 +22,13 @@ public class Main {
 
   public static void main(String[] args) {
 
-    port(Integer.valueOf(System.getenv("PORT")));
+    port(8080);
+    
+    InstagramLoginService servicioInstagram = new InstagramLoginService();
+      System.out.println("Prueba de reinicio");
     
     get("/hello", (req,res) -> "HELLO WORLD");
-    get("/instagram/login",LoginController.login(new InstagramLoginService()));
+    get("/instagram/login",LoginController.login(servicioInstagram));
     get("/instagram/callback",LoginController.tokenManagment());
     
 
