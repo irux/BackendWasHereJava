@@ -1,6 +1,7 @@
 package com.init.spark;
 
 import com.controllers.backendwashere.LoginController;
+import com.controllers.backendwashere.LoginControllerFacebook;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Main {
     get("/hello", (req,res) -> "HELLO WORLD");
     get("/instagram/login",LoginController.login(servicioInstagram));
     get("/instagram/callback",LoginController.tokenManagment());
+    post("/login",LoginControllerFacebook.login());
     
 
   }
