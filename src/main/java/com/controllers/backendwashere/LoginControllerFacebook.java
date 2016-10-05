@@ -6,6 +6,7 @@
 package com.controllers.backendwashere;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 import com.pojos.backendwashere.FacebookToken;
 import spark.Route;
 
@@ -15,13 +16,15 @@ import spark.Route;
  *
  * @author Alejo
  */
-public class LoginControllerFacebook {
+public class LoginControllerFacebook  {
     
     
     public static Route login()
     {
         
         Route loginFacebook = (request,response) -> {
+            
+            JsonParser parser = new JsonParser();
             
             
             Gson gsonObject = new Gson();
@@ -30,7 +33,9 @@ public class LoginControllerFacebook {
             
             System.out.println("TokenFront token: " + tokenFront.getFacebookToken() + " FacebookUser : " + tokenFront.getUserID());
             
-            return "{token:E3fg3rfWFF3g3gtr4g4tergfregr3gtg}";
+           
+            
+            return parser.parse("{token:E3fg3rfWFF3g3gtr4g4tergfregr3gtg}");
             
            
           
