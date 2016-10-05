@@ -5,33 +5,37 @@
  */
 package com.interfaces.backendwashere;
 
+import com.google.gson.JsonParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 /**
  *
- * @author Alejandro
+ * @author Alejo
  */
-public abstract class LoginService {
-    
-    
+public abstract class LoginServiceToken {
     protected String token;
     protected String url;
     
     
-    public abstract String login(Object information);
+    public abstract void login(Object information);
     public abstract String getUser();
     public abstract String getServiceToken();
     public String getTokenLogin()
     {
+        JsonParser parser = new JsonParser();
+        
         SignatureAlgorithm algorithmSign = SignatureAlgorithm.HS512;
         
-     //String token =  Jwts.builder()
         
-        return null;
+        
+        return parser.parse("{token:dwewefWRGFWRFgregreg}").toString();
     }
     
-    public abstract void setToken(String token);
+    public void setToken(String token)
+    {
+        this.token = token;
+    }
     
     
     

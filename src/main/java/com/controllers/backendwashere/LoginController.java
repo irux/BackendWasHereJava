@@ -23,7 +23,7 @@ public class LoginController {
         
         Route doLogin = (req,resp) -> {
         
-        String urlLogin =  service.login();
+        String urlLogin =  service.login(null);
         
         return urlLogin;
         
