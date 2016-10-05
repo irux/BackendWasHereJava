@@ -28,7 +28,7 @@ public class LoginControllerFacebook {
             
             FacebookToken tokenFront = gsonObject.fromJson(request.body(), FacebookToken.class);
             
-            
+            System.out.println("TokenFront token: " + tokenFront.getFacebookToken() + " FacebookUser : " + tokenFront.getUserID());
             
             return "{token:E3fg3rfWFF3g3gtr4g4tergfregr3gtg}";
             
