@@ -20,7 +20,7 @@ public class FacebookLoginService extends LoginServiceToken{
     @Override
     public void login(Object information) {
         
-        String tokenEntrada;
+        String tokenEntrada = "";
         
          if(!(information instanceof String))
          {
@@ -34,6 +34,8 @@ public class FacebookLoginService extends LoginServiceToken{
          Gson gsonObject = new Gson();
          
          FacebookToken token = gsonObject.fromJson(tokenEntrada, FacebookToken.class);
+         
+         setToken(token.getFacebookToken());
          
          
          
@@ -51,7 +53,9 @@ public class FacebookLoginService extends LoginServiceToken{
 
     @Override
     public void setToken(String token) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        super.setToken(token);
+
     }
     
 }

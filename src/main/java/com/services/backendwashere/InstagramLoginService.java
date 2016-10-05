@@ -26,7 +26,7 @@ public class InstagramLoginService extends LoginService {
      private Instagram instagramAccount;
     
     @Override
-    public String login() {
+    public String login(Object information) {
         
       
         if(globalService == null){
