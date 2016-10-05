@@ -35,6 +35,9 @@ public class FacebookLoginService extends LoginServiceToken{
          
          FacebookToken token = gsonObject.fromJson(tokenEntrada, FacebookToken.class);
          
+         System.out.println("Token : " + token.getFacebookToken());
+         
+         
          setToken(token.getFacebookToken());
          
          
