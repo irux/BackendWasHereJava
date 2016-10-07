@@ -73,8 +73,15 @@ public class FeedController {
         Route FeedGeo = (request,response) -> {
             
             float latitude = Float.valueOf(request.queryParams("lat"));
+            
+            System.out.println("Esta es latitud : " + latitude);
+            
             float longitude = Float.valueOf(request.queryParams("long"));
+            System.out.println("Esta es la longitud : " + longitude);
+            
             String category = request.params(":category");
+            
+            System.out.println("Esta es la categoria : " + category);
             
             String temporalRequest = "[\n" +
 "            {\n" +
@@ -147,7 +154,7 @@ public class FeedController {
             return parser.parse(temporalRequest);
         };
         
-        return null;
+        return FeedGeo;
     }
     
     
