@@ -34,7 +34,7 @@ public class Main {
     get("/instagram/callback",LoginController.tokenManagment());
     post("/login",LoginControllerFacebook.login(servicioFacebook));
     get("/profile/feed",FeedController.getFeedProfile());
-    
+    get("/search/category/:category","application/json",FeedController.getFeedCategory());
 
   }
 
