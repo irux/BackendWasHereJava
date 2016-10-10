@@ -18,6 +18,11 @@
     <artifactId>activejdbc</artifactId>
     <version>1.4.12</version>
     </dependency>
+    <dependency>
+    <groupId>com.restfb</groupId>
+    <artifactId>restfb</artifactId>
+    <version>1.31.0</version>
+    </dependency>
 
     <dependency>
       <groupId>com.sparkjava</groupId>
