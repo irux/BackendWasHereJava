@@ -5,11 +5,13 @@
  */
 package com.pojos.backendwashere;
 
+import org.javalite.activejdbc.Model;
+
 /**
  *
  * @author Alejo
  */
-public class User {
+public class User extends Model {
     
     
 
