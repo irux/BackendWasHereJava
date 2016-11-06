@@ -11,11 +11,11 @@ import org.javalite.activejdbc.Model;
  *
  * @author Alejo
  */
-public class User extends Model {
+public class UserDB extends Model {
     
     
 
-    public User() {
+    public UserDB() {
     }
 
     
