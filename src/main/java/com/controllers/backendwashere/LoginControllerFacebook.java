@@ -27,14 +27,26 @@ public class LoginControllerFacebook  {
         Route loginFacebook = (request,response) -> {
             
             
+            String tokenFromCliente = request.body();
             
-            loginService.login(request.body());
+           boolean successful = loginService.login(tokenFromCliente);
             
            
+           if(successful)
+           {
+               
+               
+               
+               
+               
+               return loginService.getServiceToken();
+           }
+           else
+           {
+               return "Error with login Facebook";
+           }
             
-            
-            return loginService.getTokenLogin();
-          
+                      
         };
         
         
