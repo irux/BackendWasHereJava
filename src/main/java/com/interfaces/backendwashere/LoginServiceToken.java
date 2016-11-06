@@ -17,9 +17,10 @@ public abstract class LoginServiceToken {
     protected String token;
     protected String url;
     
-    
-    public abstract void login(Object information);
-    public abstract String getUser();
+    protected Object userLastLoginInfo;
+    public abstract boolean login(Object information);
+    public abstract Object getLastUserLogin();
+    public abstract Object getLastTokenLogin();
     public abstract String getServiceToken();
     public String getTokenLogin()
     {
@@ -32,10 +33,6 @@ public abstract class LoginServiceToken {
         return parser.parse("{token:dwewefWRGFWRFgregreg}").toString();
     }
     
-    public void setToken(String token)
-    {
-        this.token = token;
-    }
     
     
     
