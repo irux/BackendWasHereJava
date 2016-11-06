@@ -8,6 +8,9 @@ package com.services.backendwashere;
 import com.google.gson.Gson;
 import com.interfaces.backendwashere.LoginServiceToken;
 import com.pojos.backendwashere.FacebookToken;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.Version;
+import com.restfb.types.User;
 
 /**
  *
@@ -18,7 +21,7 @@ public class FacebookLoginService extends LoginServiceToken{
    
     
     @Override
-    public void login(Object information) {
+    public boolean login(Object information) {
         
         String tokenEntrada = "";
         
@@ -37,44 +40,50 @@ public class FacebookLoginService extends LoginServiceToken{
          
          
          
-         
-         
-         System.out.println("Token : " + token.getFacebookToken());
-         
-         
-         
-         
-         
-         setToken(token.getFacebookToken());
+         return compareDataWithToken(token);
          
          
          
     }
 
-    @Override
-    public String getUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     @Override
     public String getServiceToken() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void setToken(String token) {
-
-        super.setToken(token);
-
-    }
+   
     
     
     private boolean compareDataWithToken(FacebookToken entryToken)
     {
         
+        DefaultFacebookClient clientFB = new DefaultFacebookClient(entryToken.getFacebookToken(),Version.LATEST);
         
+        User userInfoFB = clientFB.fetchObject("me",User.class);
         
-        return true;
+        if(entryToken.equals(userInfoFB.getId()))
+        {
+            super.userLastLoginInfo = userInfoFB;
+            return true;
+            
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
+    @Override
+    public Object getLastUserLogin() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object getLastTokenLogin() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
