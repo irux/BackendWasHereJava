@@ -11,6 +11,7 @@ import com.pojos.backendwashere.FacebookToken;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.Version;
 import com.restfb.types.User;
+import com.restfb.Parameter;
 
 /**
  *
@@ -58,14 +59,19 @@ public class FacebookLoginService extends LoginServiceToken{
     
     private boolean compareDataWithToken(FacebookToken entryToken)
     {
-        
+        try{
+            System.out.println(entryToken.getFacebookToken());
+            
         DefaultFacebookClient clientFB = new DefaultFacebookClient(entryToken.getFacebookToken(),Version.LATEST);
         
-        User userInfoFB = clientFB.fetchObject("me",User.class);
+        User userInfoFB = clientFB.fetchObject("me",User.class,Parameter.with("fields","first_name,gender,locale,last_name,age_range,verified"));
         
-        if(entryToken.equals(userInfoFB.getId()))
+        System.out.println(userInfoFB.getId());
+        
+        if(entryToken.getUserID().equals(userInfoFB.getId()))
         {
             super.userLastLoginInfo = userInfoFB;
+            super.token = entryToken.getFacebookToken();
             return true;
             
         }
@@ -73,17 +79,29 @@ public class FacebookLoginService extends LoginServiceToken{
         {
             return false;
         }
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+            return false;
+        }
+            
+
         
     }
 
     @Override
     public Object getLastUserLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return super.userLastLoginInfo;
+
     }
 
     @Override
     public Object getLastTokenLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return super.token;
+
     }
     
 }

@@ -6,15 +6,18 @@
 package com.pojos.backendwashere;
 
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.annotations.Table;
 
 /**
  *
  * @author Alejo
  */
+
+@Table("user")
 public class UserDB extends Model {
     
     
-
+    
     public UserDB() {
     }
 

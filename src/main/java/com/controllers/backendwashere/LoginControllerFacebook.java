@@ -9,7 +9,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.interfaces.backendwashere.LoginServiceToken;
 import com.pojos.backendwashere.FacebookToken;
+import com.pojos.backendwashere.UserDB;
+import com.restfb.types.User;
 import com.services.backendwashere.FacebookLoginService;
+import java.math.BigInteger;
+import java.util.List;
+import org.javalite.activejdbc.Base;
 import spark.Route;
 
 
@@ -34,12 +39,49 @@ public class LoginControllerFacebook  {
            
            if(successful)
            {
+                   Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://192.168.99.2:32771/washereDB", "root", "TUBerlin2016");
+
+               
+               User userFB = (User)loginService.getLastUserLogin();
+               
+               UserDB userInDB = UserDB.findFirst("id = ?", Long.parseLong(userFB.getId()));
+               
+               System.out.println(userInDB);
+               
+               if(userInDB == null)
+               {
+               try{
+               UserDB user = new UserDB();
+               user.set("tokenFB",loginService.getLastTokenLogin());
+               user.set("idFB",Long.parseLong(userFB.getId()));
+               user.set("first_name",userFB.getFirstName());
+               user.set("last_name",userFB.getLastName());
+               user.set("age_range",userFB.getAgeRange().getMin() + "-" + userFB.getAgeRange().getMax());
+               user.set("gender",userFB.getGender());
+               user.set("locale",userFB.getLocale());
+               user.set("verified",userFB.getVerified().toString());
+               user.set("tokenLogin","test");
+               user.saveIt();
+               
+                   System.err.println(user.errors());
                
                
+             
+               
+               }
+               
+               catch(Exception e)
+                       {
+                       System.err.println("Error en la transaccion : " + e.getMessage() + " " + e.getLocalizedMessage());
+                       Base.close();
+                       }
+               
+               }
                
                
+               String reponseToken = loginService.getServiceToken();
                
-               return loginService.getServiceToken();
+               return "{token:WORKS}";
            }
            else
            {

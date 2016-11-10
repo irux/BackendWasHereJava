@@ -20,14 +20,16 @@ import com.heroku.sdk.jdbc.DatabaseUrl;
 import com.services.backendwashere.InstagramLoginService;
 import com.interfaces.backendwashere.LoginService;
 import com.services.backendwashere.FacebookLoginService;
+import org.javalite.activejdbc.Base;
 
 public class Main {
 
   public static void main(String[] args) {
 
-    port(Integer.valueOf(System.getenv("PORT")));
     
-      FacebookLoginService servicioFacebook = new FacebookLoginService();
+    
+
+    FacebookLoginService servicioFacebook = new FacebookLoginService();
     
     get("/hello", (req,res) -> "HELLO WORLD");
     //get("/instagram/login",LoginController.login(servicioFacebook));
