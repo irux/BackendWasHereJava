@@ -22,7 +22,7 @@ public abstract class LoginServiceToken {
     public abstract Object getLastUserLogin();
     public abstract Object getLastTokenLogin();
     public abstract String getServiceToken();
-    public abstract String getTokenLogin(String infoInToken);
+    public abstract String getTokenLogin(Object infoInToken);
     
     
     
