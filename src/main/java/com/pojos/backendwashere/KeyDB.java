@@ -12,7 +12,7 @@ import org.javalite.activejdbc.annotations.Table;
  *
  * @author Alejandro Jaramillo
  */
-@Table("keysServices")
+@Table("key_services")
 public class KeyDB extends Model {
 
 
