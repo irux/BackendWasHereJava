@@ -22,16 +22,8 @@ public abstract class LoginServiceToken {
     public abstract Object getLastUserLogin();
     public abstract Object getLastTokenLogin();
     public abstract String getServiceToken();
-    public String getTokenLogin(Object infoInToken)
-    {
-        JsonParser parser = new JsonParser();
-        
-        SignatureAlgorithm algorithmSign = SignatureAlgorithm.HS512;
-        
-        
-        
-        return parser.parse("{token:dwewefWRGFWRFgregreg}").toString();
-    }
+    public abstract String getTokenLogin(String infoInToken);
+    
     
     
     
