@@ -101,7 +101,7 @@ public class FacebookLoginService extends LoginServiceToken {
         byte[] keyInBytes = keyForAuth.getBytes("keyBinary");
 
         JsonWebEncryption jwe = new JsonWebEncryption();
-        jwe.setPayload("Hello World!");
+        jwe.setPayload(infoInToken.toString());
         jwe.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.A128KW);
         jwe.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256);
         Key key = new AesKey(keyInBytes);
