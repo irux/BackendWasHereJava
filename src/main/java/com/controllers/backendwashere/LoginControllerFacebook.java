@@ -39,7 +39,7 @@ public class LoginControllerFacebook  {
            
            if(successful)
            {
-                   Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://192.168.99.2:32771/washereDB", "root", "TUBerlin2016");
+                   Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
 
                
                User userFB = (User)loginService.getLastUserLogin();
@@ -61,7 +61,9 @@ public class LoginControllerFacebook  {
                user.set("locale",userFB.getLocale());
                user.set("verified",userFB.getVerified().toString());
                user.set("tokenLogin","test");
+               user.set("picture",userFB.getPicture().getUrl());
                user.saveIt();
+               
                
                    System.err.println(user.errors());
                

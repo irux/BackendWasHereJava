@@ -64,7 +64,7 @@ public class FacebookLoginService extends LoginServiceToken{
             
         DefaultFacebookClient clientFB = new DefaultFacebookClient(entryToken.getFacebookToken(),Version.LATEST);
         
-        User userInfoFB = clientFB.fetchObject("me",User.class,Parameter.with("fields","first_name,gender,locale,last_name,age_range,verified"));
+        User userInfoFB = clientFB.fetchObject("me",User.class,Parameter.with("fields","first_name,gender,locale,last_name,age_range,verified,picture"));
         
         System.out.println(userInfoFB.getId());
         
