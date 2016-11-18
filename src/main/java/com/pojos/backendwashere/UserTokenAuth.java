@@ -12,11 +12,11 @@ package com.pojos.backendwashere;
 public class UserTokenAuth {
     
     
-    private int userID;
+    private long userID;
     private String authToken;
     private int permision;
 
-    public UserTokenAuth(int userID, String authToken, int permision) {
+    public UserTokenAuth(long userID, String authToken, int permision) {
         this.userID = userID;
         this.authToken = authToken;
         this.permision = permision;
@@ -30,7 +30,7 @@ public class UserTokenAuth {
         return permision;
     }
 
-    public int getUserID() {
+    public long getUserID() {
         return userID;
     }
 
