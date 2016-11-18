@@ -27,7 +27,7 @@ public class Main {
   public static void main(String[] args) {
 
     
-    
+    port(Integer.parseInt(System.getenv("PORTWASHERE")));
 
     FacebookLoginService servicioFacebook = new FacebookLoginService();
     
