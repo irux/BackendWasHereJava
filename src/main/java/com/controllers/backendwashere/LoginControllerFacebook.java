@@ -68,13 +68,15 @@ public class LoginControllerFacebook {
                     UserTokenAuth userAuth = new UserTokenAuth(Long.parseLong(userFB.getId()), (String) loginService.getLastTokenLogin(), 2);
                     String userAuthString = gsonSerialized.toJson(userAuth);
                     JsonParser parser = new JsonParser();
-                    return parser.parse("{token:" + userAuthString + "}");
+                    String AuthTokenFinal = loginService.getTokenLogin(userAuthString);
+                    return parser.parse("{token:" + AuthTokenFinal + "}");
                 } else {
                     Gson gsonSerialized = new Gson();
                     UserTokenAuth userAuth = new UserTokenAuth(Long.parseLong(userFB.getId()), (String) loginService.getLastTokenLogin(), 2);
                     String userAuthString = gsonSerialized.toJson(userAuth);
                     JsonParser parser = new JsonParser();
-                    return parser.parse("{token:" + userAuthString + "}");
+                    String AuthTokenFinal = loginService.getTokenLogin(userAuthString);
+                    return parser.parse("{token:" + AuthTokenFinal + "}");
 
                     //return "Error with login Facebook";
                 }
