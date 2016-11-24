@@ -3,6 +3,7 @@ package com.init.spark;
 import com.controllers.backendwashere.FeedController;
 import com.controllers.backendwashere.LoginController;
 import com.controllers.backendwashere.LoginControllerFacebook;
+import com.controllers.backendwashere.PostMakerController;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class Main {
     post("/login",LoginControllerFacebook.login(servicioFacebook));
     get("/profile/feed",FeedController.getFeedProfile());
     get("/search/category/:category","application/json",FeedController.getFeedCategory());
+    post("/post","application/json",PostMakerController.makePost());
+    
+    
 
   }
 
