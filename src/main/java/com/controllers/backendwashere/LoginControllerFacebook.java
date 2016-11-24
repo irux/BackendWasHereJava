@@ -69,6 +69,7 @@ public class LoginControllerFacebook {
                     String userAuthString = gsonSerialized.toJson(userAuth);
                     JsonParser parser = new JsonParser();
                     String AuthTokenFinal = loginService.getTokenLogin(userAuthString);
+                    Base.close();
                     return parser.parse("{token:" + AuthTokenFinal + "}");
                 } else {
                     Gson gsonSerialized = new Gson();
@@ -76,10 +77,13 @@ public class LoginControllerFacebook {
                     String userAuthString = gsonSerialized.toJson(userAuth);
                     JsonParser parser = new JsonParser();
                     String AuthTokenFinal = loginService.getTokenLogin(userAuthString);
+                    Base.close();
                     return parser.parse("{token:" + AuthTokenFinal + "}");
 
                     //return "Error with login Facebook";
                 }
+                
+                
 
             }
             
