@@ -34,6 +34,7 @@ public class PostMakerController {
             */            
             
             System.out.println(request.body());
+            System.out.println("Here are the headers : " + request.headers());
             
             
             
