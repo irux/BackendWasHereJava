@@ -33,6 +33,8 @@ public class PostMakerController {
             
             */            
             
+            System.out.println(request.body());
+            
             
             
             return request.body();
