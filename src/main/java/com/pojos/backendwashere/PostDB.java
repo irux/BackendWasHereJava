@@ -11,7 +11,8 @@ import org.javalite.activejdbc.Model;
  *
  * @author Alejandro Jaramillo
  */
-public class PojoDB extends Model {
+public class PostDB extends Model {
+    
     
     
     
