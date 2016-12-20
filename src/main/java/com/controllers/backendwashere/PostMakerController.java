@@ -61,7 +61,7 @@ public class PostMakerController {
             if(is != null)
             {
                 System.out.println("Entre aqui");
-               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/"  + Calendar.getInstance().getTime() + "-" +request.raw().getPart("file").getName()));
+               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/"  + Calendar.getInstance().getTimeInMillis() + "-" +request.raw().getPart("file").getSubmittedFileName()));
             }
         }
             
