@@ -34,7 +34,10 @@ public class PostPojo {
     
     
     
-    
+    public void setFileLocation(String location)
+    {
+        this.fileLocation = location;
+    }
     
    
 

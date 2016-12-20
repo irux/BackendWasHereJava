@@ -56,12 +56,12 @@ public class PostMakerController {
         
         
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-        System.out.println("Entre aqui");
         try (InputStream is = request.raw().getPart("file").getInputStream()) {
             if(is != null)
             {
-                System.out.println("Entre aqui");
-               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/"  + Calendar.getInstance().getTimeInMillis() + "-" +request.raw().getPart("file").getSubmittedFileName()));
+               String path = "/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/"  + Calendar.getInstance().getTimeInMillis() + "-" +request.raw().getPart("file").getSubmittedFileName();
+               post.setFileLocation(path);
+               Files.copy(is, Paths.get(path));
             }
         }
             

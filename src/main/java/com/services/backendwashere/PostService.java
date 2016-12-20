@@ -28,10 +28,15 @@ public class PostService {
         PostDB dbPostConnection = new PostDB();
         
         try {
+            
             dbPostConnection.set("idFB",post.getIdFB());
         dbPostConnection.set("latitude",post.getLatitude());
         dbPostConnection.set("longitude",post.getLatitude());
         dbPostConnection.set("type",post.getType());
+        if(post.getFileLocation() != "")
+        {
+            dbPostConnection.set("fileLocation",post.getFileLocation());
+        }
         dbPostConnection.saveIt();
         } catch (Exception e) {
             System.out.println(e.getMessage());
