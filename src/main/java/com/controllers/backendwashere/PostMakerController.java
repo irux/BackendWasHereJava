@@ -31,6 +31,8 @@ public class PostMakerController {
             
         Gson gsonBuilder = new Gson();
         
+        System.out.println(response.body());
+        
         PostPojo post = gsonBuilder.fromJson(request.body(), PostPojo.class);
             
         TokenManagerService tokenManager = new TokenManagerService();
