@@ -39,6 +39,11 @@ public class PostPojo {
         this.fileLocation = location;
     }
     
+    public void setFBId(long id)
+    {
+        this.idFB = id;
+    }
+    
    
 
     public String getFileLocation() {

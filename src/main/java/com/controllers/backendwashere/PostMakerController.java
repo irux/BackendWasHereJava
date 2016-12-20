@@ -47,6 +47,8 @@ public class PostMakerController {
             
         UserTokenAuth infoTokenUser = gsonBuilder.fromJson(tokenManager.getInfoToken(token),UserTokenAuth.class);
         
+        post.setFBId(infoTokenUser.getUserID());
+        
         if(!Files.exists(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID())))
         {
         Files.createDirectory(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()));
