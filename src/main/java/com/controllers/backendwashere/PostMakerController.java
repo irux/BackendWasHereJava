@@ -7,7 +7,13 @@ package com.controllers.backendwashere;
 
 import com.google.gson.Gson;
 import com.pojos.backendwashere.PostPojo;
+import com.pojos.backendwashere.UserTokenAuth;
 import com.services.backendwashere.PostService;
+import com.services.backendwashere.TokenManagerService;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import javax.servlet.MultipartConfigElement;
 import spark.Route;
 
 /**
@@ -22,16 +28,40 @@ public class PostMakerController {
         
         Route postRoute = (request,response) -> {
             
-            /*
-            Gson gsonBuilder = new Gson();
             
-            PostPojo post = gsonBuilder.fromJson(request.body(), PostPojo.class);
+        Gson gsonBuilder = new Gson();
+        
+        PostPojo post = gsonBuilder.fromJson(request.body(), PostPojo.class);
+            
+        TokenManagerService tokenManager = new TokenManagerService();
+            
+        String token = request.headers("Authentication");
+            
+        UserTokenAuth infoTokenUser = gsonBuilder.fromJson(tokenManager.getInfoToken(token),UserTokenAuth.class);
+        
+        if(!Files.exists(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID())))
+        {
+        Files.createDirectory(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()));
+        Files.createDirectory(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/1"));
+        Files.createDirectory(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/2"));
+        }
+        
+        
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+        try (InputStream is = request.raw().getPart("file").getInputStream()) {
+            if(is != null)
+            {
+               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/" + Double.toString(Math.floor(Math.random() * 100000000))));
+            }
+        }
+            
+            
             
             PostService servicePostMaker = new PostService();
             
             servicePostMaker.saveIt(post);
             
-            */            
+                       
             
             System.out.println(request.body());
             System.out.println("Here are the headers : " + request.headers());

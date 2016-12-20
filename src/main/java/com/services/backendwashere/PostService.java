@@ -30,8 +30,8 @@ public class PostService {
         dbPostConnection.set("idFB",post.getIdFB());
         dbPostConnection.set("latitude",post.getLatitude());
         dbPostConnection.set("longitude",post.getLatitude());
-        dbPostConnection.set("likes",post.getLikes());
         dbPostConnection.set("type",post.getType());
+        
         
         
         
