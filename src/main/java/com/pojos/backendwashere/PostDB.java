@@ -6,11 +6,13 @@
 package com.pojos.backendwashere;
 
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.annotations.Table;
 
 /**
  *
  * @author Alejandro Jaramillo
  */
+@Table("post")
 public class PostDB extends Model {
     
     
