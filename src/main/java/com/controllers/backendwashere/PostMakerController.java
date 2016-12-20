@@ -10,6 +10,7 @@ import com.pojos.backendwashere.PostPojo;
 import com.pojos.backendwashere.UserTokenAuth;
 import com.services.backendwashere.PostService;
 import com.services.backendwashere.TokenManagerService;
+import java.io.DataInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,7 +32,9 @@ public class PostMakerController {
             
         Gson gsonBuilder = new Gson();
         
-         System.out.println("Estos son los parametros : " + request.raw().getParameter("post"));
+        DataInputStream x = new DataInputStream(request.raw().getPart("post").getInputStream());
+        
+         System.out.println("Estos son los parametros : " + x.readUTF() );
         
         System.out.println("Esto es lo que recibo : " + request.body());
         
