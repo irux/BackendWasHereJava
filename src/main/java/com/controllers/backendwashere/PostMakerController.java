@@ -60,11 +60,8 @@ public class PostMakerController {
             if(is != null)
             {
                 System.out.println("Entre aqui");
-               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/" + "test.jpg" ));
+               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/" + Double.toString(Math.floor(Math.random() * 100000000))));
             }
-        }catch(Exception x)
-        {
-            System.err.println(x.getMessage());
         }
             
             
@@ -80,7 +77,7 @@ public class PostMakerController {
             
             
             
-            return "OK";
+            return request.body();
         };      
         
         return postRoute;
