@@ -14,6 +14,7 @@ import java.io.DataInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Calendar;
 import javax.servlet.MultipartConfigElement;
 import spark.Route;
 
@@ -60,7 +61,7 @@ public class PostMakerController {
             if(is != null)
             {
                 System.out.println("Entre aqui");
-               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/" + Double.toString(Math.floor(Math.random() * 100000000))));
+               Files.copy(is, Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/"  + Calendar.getInstance().getTime() + "-" +request.raw().getPart("file").getName()));
             }
         }
             
