@@ -38,7 +38,7 @@ public class Main {
     post("/login",LoginControllerFacebook.login(servicioFacebook));
     get("/profile/feed",FeedController.getFeedProfile());
     get("/search/category/:category","application/json",FeedController.getFeedCategory());
-    post("/post","application/json",PostMakerController.makePost());
+    post("/post","multipart/form-data",PostMakerController.makePost());
     
     
 
