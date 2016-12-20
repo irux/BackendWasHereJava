@@ -31,7 +31,7 @@ public class PostMakerController {
             
         Gson gsonBuilder = new Gson();
         
-        System.out.println(response.body());
+        System.out.println("Esto es lo que recibo : " + request.body());
         
         PostPojo post = gsonBuilder.fromJson(request.body(), PostPojo.class);
             
