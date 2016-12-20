@@ -27,11 +27,19 @@ public class PostService {
         
         PostDB dbPostConnection = new PostDB();
         
-        dbPostConnection.set("idFB",post.getIdFB());
+        try {
+            dbPostConnection.set("idFB",post.getIdFB());
         dbPostConnection.set("latitude",post.getLatitude());
         dbPostConnection.set("longitude",post.getLatitude());
         dbPostConnection.set("type",post.getType());
         dbPostConnection.saveIt();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
+       
+        
         
 
 
