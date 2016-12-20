@@ -32,15 +32,13 @@ public class PostMakerController {
             
         Gson gsonBuilder = new Gson();
         
-        DataInputStream x = new DataInputStream(request.raw().getPart("post").getInputStream());
+        //DataInputStream x = new DataInputStream(request.raw().getPart("post").getInputStream());
         
-         System.out.println("Estos son los parametros : " + x.readUTF() );
         
-        System.out.println("Esto es lo que recibo : " + request.body());
         
        
         
-        PostPojo post = gsonBuilder.fromJson(request.body(), PostPojo.class);
+        PostPojo post = gsonBuilder.fromJson(request.headers("post"), PostPojo.class);
             
         TokenManagerService tokenManager = new TokenManagerService();
             
