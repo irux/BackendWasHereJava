@@ -32,9 +32,6 @@ public class PostService {
         dbPostConnection.set("longitude",post.getLatitude());
         dbPostConnection.set("type",post.getType());
         
-        
-        
-        
 
 
         

@@ -23,7 +23,6 @@ public class PostPojo {
 
     
     public PostPojo(long idFB,int likes, float latitude, float longitude,String timestamp, int type) {
-        this.fileLocation = fileLocation;
         this.likes = likes;
         this.index = index;
         this.latitude = latitude;
@@ -37,7 +36,7 @@ public class PostPojo {
     
     
     
-    
+   
 
     public String getFileLocation() {
         return fileLocation;
