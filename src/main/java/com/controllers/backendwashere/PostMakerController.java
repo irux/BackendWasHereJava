@@ -35,11 +35,21 @@ public class PostMakerController {
         
         //DataInputStream x = new DataInputStream(request.raw().getPart("post").getInputStream());
         
-            System.out.println(request.body());
+            System.out.println("Esto es body : " + request.body());
         
-            System.out.println(request.headers());
+            System.out.println("estos son header : " + request.headers());
         
+            
+            
+            try {
+                        PostPojo post = gsonBuilder.fromJson(request.headers("post"), PostPojo.class);
+            } catch (Exception e) {
+                 System.out.println("Hubo un error : " + e.getMessage());
+            }
+            
+            
         PostPojo post = gsonBuilder.fromJson(request.headers("post"), PostPojo.class);
+            
             
         TokenManagerService tokenManager = new TokenManagerService();
             
