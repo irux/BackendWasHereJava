@@ -77,6 +77,12 @@ public class PostPojo {
     public float getLongitude() {
         return longitude;
     }
+
+    @Override
+    public String toString() {
+        String postToString = "Post{fileLocation: "+ this.fileLocation + ",idFB: " + this.idFB + ",index: " + this.index+ ",latitude: " + this.latitude+ ",longitude: " + this.longitude + ",likes: " + this.likes + ",timestamp: " + this.timestamp + ",type: " + this.type + "}" ;
+        return postToString;  //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

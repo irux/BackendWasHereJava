@@ -56,6 +56,9 @@ public class PostMakerController {
         Files.createDirectory(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/2"));
         }
         
+        
+         System.out.println(post);
+        
         if(post.getType() == 1 || post.getType() == 2)
         {
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
