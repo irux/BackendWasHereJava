@@ -56,7 +56,8 @@ public class PostMakerController {
         Files.createDirectory(Paths.get("/root/usersWashere/" + infoTokenUser.getUserID()+ "/2"));
         }
         
-        
+        if(post.getType() == 1 || post.getType() == 2)
+        {
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
         try (InputStream is = request.raw().getPart("file").getInputStream()) {
             if(is != null)
@@ -67,7 +68,7 @@ public class PostMakerController {
             }
         }
             
-            
+        }
             
             PostService servicePostMaker = new PostService();
             
