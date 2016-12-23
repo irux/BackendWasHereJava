@@ -35,9 +35,9 @@ public class PostMakerController {
         
         //DataInputStream x = new DataInputStream(request.raw().getPart("post").getInputStream());
         
+            System.out.println(request.body());
         
-        
-       
+            System.out.println(request.headers());
         
         PostPojo post = gsonBuilder.fromJson(request.headers("post"), PostPojo.class);
             
