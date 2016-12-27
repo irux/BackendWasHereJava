@@ -59,10 +59,7 @@ public class PostService {
     }
     
     
-    public getPost()
-    {
-        
-    }
+    
     
     
     
