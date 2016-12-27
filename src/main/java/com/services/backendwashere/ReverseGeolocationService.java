@@ -66,6 +66,8 @@ public class ReverseGeolocationService {
                 System.err.println("Error : " + ex.getMessage());
             }
        
+            System.out.println("Object result : " + objectResult);
+            
         JsonArray resultArray = objectResult.getAsJsonArray("results");
         
             System.out.println("Result Arrays as string : " + resultArray.toString());
