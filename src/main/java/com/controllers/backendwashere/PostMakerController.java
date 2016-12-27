@@ -6,12 +6,15 @@
 package com.controllers.backendwashere;
 
 import com.google.gson.Gson;
+import com.pojos.backendwashere.PlacePojo;
 import com.pojos.backendwashere.PostPojo;
 import com.pojos.backendwashere.UserTokenAuth;
 import com.services.backendwashere.PostService;
+import com.services.backendwashere.ReverseGeolocationService;
 import com.services.backendwashere.TokenManagerService;
 import java.io.DataInputStream;
 import java.io.InputStream;
+import java.net.Authenticator;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Calendar;
@@ -33,24 +36,23 @@ public class PostMakerController {
             
         Gson gsonBuilder = new Gson();
         
+        ReverseGeolocationService serviceGeolocation = new ReverseGeolocationService();
+            
+            
+        
         //DataInputStream x = new DataInputStream(request.raw().getPart("post").getInputStream());
         
-            System.out.println("Esto es body : " + request.body());
+
         
-            System.out.println("estos son header : " + request.headers());
-        
-            
-            
-            try {
-                        PostPojo post = gsonBuilder.fromJson(request.headers("post"), PostPojo.class);
-            } catch (Exception e) {
-                 System.out.println("Hubo un error : " + e.getMessage());
-            }
             
             
         PostPojo post = gsonBuilder.fromJson(request.headers("post"), PostPojo.class);
             
             
+        
+            PlacePojo placePost = serviceGeolocation.getReverse(post.getLongitude(), post.getLatitude());
+        
+        
         TokenManagerService tokenManager = new TokenManagerService();
             
         String token = request.headers("Authentication");

@@ -20,6 +20,7 @@ public class PostPojo {
     private String timestamp;
     private long idFB;
     private int type;
+    private String name;
 
     
     public PostPojo(long idFB,int likes, float latitude, float longitude,String timestamp, int type) {
@@ -31,6 +32,15 @@ public class PostPojo {
         this.idFB = idFB;
         this.type = type;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
     
     
     

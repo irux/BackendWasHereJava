@@ -33,6 +33,7 @@ public class PostService {
         dbPostConnection.set("latitude",post.getLatitude());
         dbPostConnection.set("longitude",post.getLatitude());
         dbPostConnection.set("type",post.getType());
+        dbPostConnection.set("place_name",post.getName());
         if(post.getFileLocation() != "")
         {
             dbPostConnection.set("fileLocation",post.getFileLocation());
@@ -54,6 +55,12 @@ public class PostService {
         
         
         return true;
+        
+    }
+    
+    
+    public getPost()
+    {
         
     }
     
