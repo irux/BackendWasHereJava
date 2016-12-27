@@ -59,10 +59,10 @@ public class ReverseGeolocationService {
             System.out.println("I am already here");
         JsonParser parser = new JsonParser();
             
-        JsonObject objectResult = null;
+        JsonElement objectResult = null;
             try {
                 System.out.println("I am in try");
-                objectResult = parser.parse(response.body().string()).getAsJsonObject();
+                objectResult = parser.parse(response.body().string());
                 System.out.println(objectResult.toString());
             } catch (IOException ex) {
                 System.err.println("Error : " + ex.getMessage());
