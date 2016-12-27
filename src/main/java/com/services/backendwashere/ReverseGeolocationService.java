@@ -6,10 +6,15 @@
 package com.services.backendwashere;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.pojos.backendwashere.PlacePojo;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdk.nashorn.internal.parser.JSONParser;
 import okhttp3.*;
 
 /**
@@ -24,7 +29,52 @@ public class ReverseGeolocationService {
     
     }
     
-    public PlacePojo getReverse(float longitude,float latitude)
+    
+    public String getReverseGoogleAPI(float longitude,float latitude)
+    {
+        
+        String resultAddress = null;
+         Response response = null;
+        try {
+            OkHttpClient client = new OkHttpClient();
+        
+        Request request = new Request.Builder()
+                .url("https://maps.googleapis.com/maps/api/geocode/json? latlng=" + latitude+"," + longitude + "&key=AIzaSyAvF8s-D-3K97jsgirefF0bo6YaNB26Fh4")
+                .build();
+
+        response = client.newCall(request).execute();
+        } catch (Exception e) {
+            System.err.println("Error : " + e.getMessage());
+            
+        }
+        
+        
+        
+        if(response != null)
+        {
+        JsonParser parser = new JsonParser();
+        
+        JsonObject objectResult = null;
+            try {
+                objectResult = parser.parse(response.body().string()).getAsJsonObject();
+            } catch (IOException ex) {
+                Logger.getLogger(ReverseGeolocationService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+        JsonArray resultArray = objectResult.getAsJsonArray("results");
+        
+        JsonObject resultFirst = resultArray.get(0).getAsJsonObject();
+        
+        resultAddress = resultFirst.get("formatted_address").getAsString();
+        
+        
+        
+        
+        }
+        return resultAddress;
+    }
+    
+    public PlacePojo getReverseOpenStreetmap(float longitude,float latitude)
     {
         
         System.out.println("Longitude : " + longitude);

@@ -50,10 +50,12 @@ public class PostMakerController {
             
             
         
-        PlacePojo placePost = serviceGeolocation.getReverse(post.getLongitude(), post.getLatitude());
+        String Address = serviceGeolocation.getReverseGoogleAPI(post.getLongitude(), post.getLatitude());
         
         
-        post.setName(placePost.getNameDetails().getName());
+        
+        
+        post.setName(Address);
         
         TokenManagerService tokenManager = new TokenManagerService();
             
