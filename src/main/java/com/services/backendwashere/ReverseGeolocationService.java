@@ -43,6 +43,8 @@ public class ReverseGeolocationService {
                 .build();
 
         response = client.newCall(request).execute();
+        
+        System.out.println("Response body : " + response.body().string());
         } catch (Exception e) {
             System.err.println("Error : " + e.getMessage());
             
@@ -53,22 +55,26 @@ public class ReverseGeolocationService {
         if(response != null)
         {
         JsonParser parser = new JsonParser();
-        
+            
         JsonObject objectResult = null;
             try {
                 objectResult = parser.parse(response.body().string()).getAsJsonObject();
             } catch (IOException ex) {
-                Logger.getLogger(ReverseGeolocationService.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Error : " + ex.getMessage());
             }
        
         JsonArray resultArray = objectResult.getAsJsonArray("results");
         
+            System.out.println("Result Arrays as string : " + resultArray.toString());
+        
         JsonObject resultFirst = resultArray.get(0).getAsJsonObject();
+        
+            System.out.println("resultfirst as array : " + resultFirst);
         
         resultAddress = resultFirst.get("formatted_address").getAsString();
         
         
-        
+            System.out.println("result Address : " + resultAddress);
         
         }
         return resultAddress;
