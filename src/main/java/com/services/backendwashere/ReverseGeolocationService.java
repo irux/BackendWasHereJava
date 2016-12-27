@@ -52,10 +52,11 @@ public class ReverseGeolocationService {
             
         }
         
-        
+        System.out.println("Response : " + response);
         
         if(response != null)
         {
+            System.out.println("I am already here");
         JsonParser parser = new JsonParser();
             
         JsonObject objectResult = null;
