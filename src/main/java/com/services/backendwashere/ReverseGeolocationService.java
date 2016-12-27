@@ -27,6 +27,9 @@ public class ReverseGeolocationService {
     public PlacePojo getReverse(float longitude,float latitude)
     {
         
+        System.out.println("Longitude : " + longitude);
+        System.out.println("latitude : " + latitude);
+        
         Gson gsonBuilder = new Gson();
         
         Response response = null;
@@ -43,11 +46,15 @@ public class ReverseGeolocationService {
             
         }
         
+        System.out.println("response value : " + response);
+        
         if(response != null)
         {
         PlacePojo place = null;
             try {
+                System.out.println("response.body : " + response.body().string());
                 place = gsonBuilder.fromJson(response.body().string(), PlacePojo.class);
+                System.out.println("I am already hier");
             } catch (IOException ex) {
                 System.err.println("Error : " + ex.getMessage());
             }
