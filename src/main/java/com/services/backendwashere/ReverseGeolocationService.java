@@ -68,6 +68,8 @@ public class ReverseGeolocationService {
                 System.err.println("Error : " + ex.getMessage());
             }
        
+            
+            /*
             System.out.println("Object result : " + objectResult);
             
         JsonArray resultArray = objectResult.getAsJsonArray("results");
@@ -82,6 +84,8 @@ public class ReverseGeolocationService {
         
         
             System.out.println("result Address : " + resultAddress);
+
+                */
         
         }
         return resultAddress;
