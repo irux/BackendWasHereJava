@@ -38,8 +38,10 @@ public class ReverseGeolocationService {
         try {
             OkHttpClient client = new OkHttpClient();
         
+            String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude+"," + longitude + "&key=AIzaSyAvF8s-D-3K97jsgirefF0bo6YaNB26Fh4";
         Request request = new Request.Builder()
-                .url("https://maps.googleapis.com/maps/api/geocode/json? latlng=" + latitude+"," + longitude + "&key=AIzaSyAvF8s-D-3K97jsgirefF0bo6YaNB26Fh4")
+                
+                .url(url)
                 .build();
 
         response = client.newCall(request).execute();
