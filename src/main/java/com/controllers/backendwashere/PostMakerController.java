@@ -57,6 +57,8 @@ public class PostMakerController {
         
         post.setName(Address);
         
+            System.out.println("here is name of address : " + post.getName());
+        
         TokenManagerService tokenManager = new TokenManagerService();
             
         String token = request.headers("Authentication");
