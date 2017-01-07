@@ -32,7 +32,7 @@ public class PostService {
             
             dbPostConnection.set("idFB",post.getIdFB());
         dbPostConnection.set("latitude",post.getLatitude());
-        dbPostConnection.set("longitude",post.getLatitude());
+        dbPostConnection.set("longitude",post.getLongitude());
         dbPostConnection.set("type",post.getType());
         dbPostConnection.set("place_name",post.getName());
         if(post.getFileLocation() != "")
