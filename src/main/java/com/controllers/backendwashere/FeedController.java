@@ -12,6 +12,7 @@ import com.pojos.backendwashere.PostPojo;
 import com.pojos.backendwashere.UserTokenAuth;
 import com.services.backendwashere.TokenManagerService;
 import java.util.List;
+import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.LazyList;
 import spark.Route;
 
@@ -25,6 +26,8 @@ public class FeedController {
     {
         
             
+        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+        
         
             Route feedProfile = (response,request) -> {
             
@@ -46,7 +49,7 @@ public class FeedController {
             
             
                 System.out.println("here is the answer : " + jsonAnswer);
-                
+                Base.close();
                 return jsonAnswer;
                     
                 } catch (Exception e) {
@@ -92,7 +95,7 @@ public class FeedController {
             JsonParser parser = new JsonParser();
 
 */
-            
+            Base.close();
            return null;
             
              
