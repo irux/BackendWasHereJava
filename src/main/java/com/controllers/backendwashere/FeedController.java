@@ -39,13 +39,18 @@ public class FeedController {
             UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
             
             System.out.println("here is the fb id : " + userInfo.getUserID());
-            
-            LazyList<PostDB> listPost = PostDB.where("idFB = ?",userInfo.getUserID());
+                try {
+                    LazyList<PostDB> listPost = PostDB.where("idFB = ?",userInfo.getUserID());
             
             String jsonAnswer = listPost.toJson(true);
             
             
                 System.out.println("here is the answer : " + jsonAnswer);
+                    
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+            
             
             /*
             String answer = "[\n" +
