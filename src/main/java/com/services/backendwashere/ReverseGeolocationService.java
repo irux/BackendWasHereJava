@@ -38,7 +38,7 @@ public class ReverseGeolocationService {
         
         GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyAvF8s-D-3K97jsgirefF0bo6YaNB26Fh4");
         
-        LatLng latitudLongitude = new LatLng(longitude, latitude);
+        LatLng latitudLongitude = new LatLng(latitude, longitude);
         
             GeocodingResult[] result;
         try {
