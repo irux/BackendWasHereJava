@@ -26,10 +26,12 @@ public class FeedController {
     {
         
             
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+       
         
         
             Route feedProfile = (response,request) -> {
+                
+                 Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
             
             Gson gson = new Gson();
                 
