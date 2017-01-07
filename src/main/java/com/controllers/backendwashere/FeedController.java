@@ -46,9 +46,11 @@ public class FeedController {
             
             
                 System.out.println("here is the answer : " + jsonAnswer);
+                
+                return jsonAnswer;
                     
                 } catch (Exception e) {
-                    System.err.println(e.getMessage());
+                    System.err.println(e.getMessage()); 
                 }
             
             
@@ -91,7 +93,7 @@ public class FeedController {
 
 */
             
-           return jsonAnswer;
+           return null;
             
              
             
