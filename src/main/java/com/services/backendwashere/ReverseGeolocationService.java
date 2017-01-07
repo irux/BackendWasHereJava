@@ -44,7 +44,7 @@ public class ReverseGeolocationService {
         try {
             result = GeocodingApi.reverseGeocode(context, latitudLongitude).await();
             System.out.println("Here the formattedAddress : " + result[0].formattedAddress);
-            return result[0].formattedAddress;
+            return result[0].addressComponents[0].shortName;
         } catch (Exception ex) {
             Logger.getLogger(ReverseGeolocationService.class.getName()).log(Level.SEVERE, null, ex);
         }
