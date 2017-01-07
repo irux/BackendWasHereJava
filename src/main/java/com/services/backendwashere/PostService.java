@@ -8,6 +8,7 @@ package com.services.backendwashere;
 import com.pojos.backendwashere.PostDB;
 import com.pojos.backendwashere.PostPojo;
 import org.javalite.activejdbc.Base;
+import org.javalite.activejdbc.LazyList;
 
 /**
  *
@@ -56,6 +57,27 @@ public class PostService {
         
         return true;
         
+    }
+    
+    
+    public String getPostByFBID(long id)
+    {
+        
+        System.out.println("I Am Here -----");
+         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+         
+         LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
+            
+            String jsonAnswer = listPost.toJson(true);
+            
+            
+            
+                System.out.println("here is the answer : " + jsonAnswer);
+                
+                Base.close();
+         
+         return jsonAnswer;
+         
     }
     
     

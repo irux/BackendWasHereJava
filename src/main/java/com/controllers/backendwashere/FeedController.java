@@ -10,6 +10,7 @@ import com.google.gson.JsonParser;
 import com.pojos.backendwashere.PostDB;
 import com.pojos.backendwashere.PostPojo;
 import com.pojos.backendwashere.UserTokenAuth;
+import com.services.backendwashere.PostService;
 import com.services.backendwashere.TokenManagerService;
 import java.util.List;
 import org.javalite.activejdbc.Base;
@@ -31,11 +32,10 @@ public class FeedController {
         
             Route feedProfile = (response,request) -> {
                 
-                try {
-                    Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");   
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
-                }
+                
+                System.out.println("Ich Bin HIERRRRR");
+                
+            
                 
                   
             
@@ -50,19 +50,11 @@ public class FeedController {
             UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
             
             System.out.println("here is the fb id : " + userInfo.getUserID());
-                try {
-                    LazyList<PostDB> listPost = PostDB.where("idFB = ?",userInfo.getUserID());
+                
             
-            String jsonAnswer = listPost.toJson(true);
+            PostService postService = new PostService();
             
-            
-                System.out.println("here is the answer : " + jsonAnswer);
-                Base.close();
-                return jsonAnswer;
-                    
-                } catch (Exception e) {
-                    System.err.println(e.getMessage()); 
-                }
+            String answer = postService.getPostByFBID(userInfo.getUserID());
             
             
             /*
@@ -103,8 +95,8 @@ public class FeedController {
             JsonParser parser = new JsonParser();
 
 */
-            Base.close();
-           return null;
+            
+           return answer;
             
              
             
