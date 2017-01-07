@@ -29,17 +29,23 @@ public class FeedController {
             Route feedProfile = (response,request) -> {
             
             Gson gson = new Gson();
-            
+                
             TokenManagerService tokenManager = new TokenManagerService();
             
-           String infoJson = tokenManager.getInfoToken(response.headers("Authentication"));
+            String infoJson = tokenManager.getInfoToken(response.headers("Authentication"));
+           
+            System.out.println("Here is the token : " + response.headers("Authentication"));
            
             UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
+            
+            System.out.println("here is the fb id : " + userInfo.getUserID());
             
             LazyList<PostDB> listPost = PostDB.where("idFB = ?",userInfo.getUserID());
             
             String jsonAnswer = listPost.toJson(true);
             
+            
+                System.out.println("here is the answer : " + jsonAnswer);
             
             /*
             String answer = "[\n" +
