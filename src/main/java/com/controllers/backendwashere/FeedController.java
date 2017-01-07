@@ -5,7 +5,14 @@
  */
 package com.controllers.backendwashere;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonParser;
+import com.pojos.backendwashere.PostDB;
+import com.pojos.backendwashere.PostPojo;
+import com.pojos.backendwashere.UserTokenAuth;
+import com.services.backendwashere.TokenManagerService;
+import java.util.List;
+import org.javalite.activejdbc.LazyList;
 import spark.Route;
 
 /**
@@ -17,10 +24,26 @@ public class FeedController {
     public static Route getFeedProfile()
     {
         
-        Route feedProfile = (response,request) -> {
             
+        
+            Route feedProfile = (response,request) -> {
+            
+            Gson gson = new Gson();
+            
+            TokenManagerService tokenManager = new TokenManagerService();
+            
+           String infoJson = tokenManager.getInfoToken(response.headers("Authentication"));
+           
+            UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
+            
+            LazyList<PostDB> listPost = PostDB.where("idFB = ?",userInfo.getUserID());
+            
+            String jsonAnswer = listPost.toJson(true);
+            
+            
+            /*
             String answer = "[\n" +
-"        { post_id: 1, postType:\"video\", location:\"Kottbusser Tor\", long: 51.83733, lat: -8.3016, date: 1 , likes: 12 },\n" +
+"        { post_id: 1, postType:\"video\", location:\"Kottbusser Tor\", long: 51.83733, lat: -8.3016, timestamp: 1 , likes: 12 },\n" +
 "        { post_id: 1, postType:\"video\", location:\"TU Berlin\", long: 51.83733, lat: -8.3016, date: 1473929274955 , likes: 12 },\n" +
 "        { post_id: 1, postType:\"picture\", location:\"What Do You Fancy Love?\", long: 51.83733, lat: -8.3016, date: 1473929274955 , likes: 12 },\n" +
 "        { post_id: 1, postType:\"video\", location:\"Kottbusser Tor\", long: 51.83733, lat: -8.3016, date: 1473929274955 , likes: 12 },\n" +
@@ -54,8 +77,10 @@ public class FeedController {
             
             
             JsonParser parser = new JsonParser();
+
+*/
             
-           return parser.parse(answer);
+           return jsonAnswer;
             
              
             
