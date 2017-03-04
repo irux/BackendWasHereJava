@@ -124,6 +124,13 @@ public class FeedController {
             
             System.out.println("Esta es la categoria : " + category);
             
+            
+             PostService postService = new PostService();
+             
+             String json = postService.getPostsByGPS(longitude, latitude);
+             
+             System.out.println("It is json for getFeedCategory " + json);
+            
             String temporalRequest = "[\n" +
 "            {\n" +
 "              post_id:1,\n" +
@@ -192,7 +199,7 @@ public class FeedController {
             
            
             
-            return parser.parse(temporalRequest);
+            return json;
         };
         
         return FeedGeo;

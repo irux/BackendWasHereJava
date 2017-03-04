@@ -83,9 +83,9 @@ public class PostMakerController {
         try (InputStream is = request.raw().getPart("file").getInputStream()) {
             if(is != null)
             {
-               String path = "/root/usersWashere/" + infoTokenUser.getUserID()+ "/" + post.getType()  + "/"  + Calendar.getInstance().getTimeInMillis() + "-" +request.raw().getPart("file").getSubmittedFileName();
+               String path =  infoTokenUser.getUserID()+ "/" + post.getType()  + "/"  + Calendar.getInstance().getTimeInMillis() + "-" +request.raw().getPart("file").getSubmittedFileName();
                post.setFileLocation(path);
-               Files.copy(is, Paths.get(path));
+               Files.copy(is, Paths.get( "/root/usersWashere/" + path));
             }
         }
             
