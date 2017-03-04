@@ -28,6 +28,9 @@ public class Main {
   public static void main(String[] args) {
 
     
+     staticFiles.externalLocation("/root/usersWashere");
+     staticFiles.expireTime(600);
+      
     port(Integer.parseInt(System.getenv("PORTWASHERE")));
 
     FacebookLoginService servicioFacebook = new FacebookLoginService();
