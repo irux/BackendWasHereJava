@@ -124,12 +124,38 @@ public class FeedController {
             
             System.out.println("Esta es la categoria : " + category);
             
+            TokenManagerService tokenManager = new TokenManagerService();
+            
+            String infoJson = tokenManager.getInfoToken(request.headers("Authentication"));
+            
+            Gson gson = new Gson();
+            
+            UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
+            
             
              PostService postService = new PostService();
              
-             String json = postService.getPostsByGPS(longitude, latitude);
              
-             System.out.println("It is json for getFeedCategory " + json);
+             switch(category.toLowerCase())
+             {
+                 case "here":
+                     
+                     String json = postService.getPostsByGPS(longitude, latitude);
+                     System.out.println("It is json for getFeedCategory " + json);
+                     return json;
+                 case "favorites":
+                     PostDB[] WhereIWas = postService.getPostByFBIDArray(userInfo.getUserID());
+                     String jsonFavorites = postService.getPostsByGPS(WhereIWas);
+                     return jsonFavorites;
+                     
+                     
+             }
+             
+             
+             
+             
+             
+             
             
             String temporalRequest = "[\n" +
 "            {\n" +
@@ -199,7 +225,7 @@ public class FeedController {
             
            
             
-            return json;
+            return temporalRequest;
         };
         
         return FeedGeo;

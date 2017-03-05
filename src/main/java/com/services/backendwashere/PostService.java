@@ -61,6 +61,58 @@ public class PostService {
     }
     
     
+    public PostDB[] getPostByFBIDArray(long id)    
+    {
+        
+        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+         
+        LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
+        
+        Base.close();
+         
+        return (PostDB[])listPost.toArray();
+    }
+    
+    
+    public String getPostsByGPS(PostDB[] post)
+    {
+        float radio = 0.0005F;
+        StringBuilder Query = new StringBuilder();
+        
+        Query.append("SELECT * FROM `post` WHERE (type = 1 or type = 2) and ");
+        
+        for (int x = 0 ; x<post.length ; x++) {
+            Long latitude = (Long)post[x].get("latitude");
+            Long longitude = (Long)post[x].get("longitude");
+            
+            Query.append("(latitude BETWEEN " +  (latitude - radio) + " and " + (latitude + radio) + " ) and (longitude BETWEEN " + (longitude - radio) + " and " + (longitude + radio) + ") " );
+            if(x != post.length -1)
+            {
+                Query.append(" or ");
+            }
+            
+           
+
+            
+        }
+        
+        
+        System.out.println("Here is the query : " + Query);
+        
+        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+         
+        LazyList<PostDB> listPost = PostDB.findBySQL(Query.toString());
+        
+        String json = listPost.toJson(true);
+        
+        
+        Base.close();
+        
+        return json;
+        
+    }
+    
+    
     public String getPostByFBID(long id)
     {
         
