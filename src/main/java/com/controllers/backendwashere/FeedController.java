@@ -146,7 +146,7 @@ public class FeedController {
                      break ;
                  case "favorites":
                      System.out.println("Ich bin bei favorites");
-                     PostDB[] WhereIWas = postService.getPostByFBIDArray(userInfo.getUserID());
+                     LazyList<PostDB> WhereIWas = postService.getPostByFBIDArray(userInfo.getUserID());
                      json = postService.getPostsByGPS(WhereIWas);
                      break;
                      
