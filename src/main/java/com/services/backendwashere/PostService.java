@@ -61,7 +61,7 @@ public class PostService {
     }
     
     
-    public PostDB[] getPostByFBIDArray(long id)    
+    public LazyList<PostDB> getPostByFBIDArray(long id)    
     {
         
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
@@ -69,16 +69,16 @@ public class PostService {
         LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
         
         
-        PostDB [] x = (PostDB[])listPost.toArray();
+       
         
         System.out.println("I am Ready with the answer here");
          
         Base.close();
-        return x;
+        return listPost;
     }
     
     
-    public String getPostsByGPS(PostDB[] post)
+    public String getPostsByGPS(LazyList<PostDB> post)
     {
         
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
@@ -88,12 +88,12 @@ public class PostService {
         try{
         Query.append("SELECT * FROM `post` WHERE (type = 1 or type = 2) and ");
         
-        for (int x = 0 ; x<post.length ; x++) {
-            Long latitude = (Long)post[x].get("latitude");
-            Long longitude = (Long)post[x].get("longitude");
+        for (int x = 0 ; x<post.size() ; x++) {
+            Long latitude = (Long)post.get(x).get("latitude");
+            Long longitude = (Long)post.get(x).get("longitude");
             
             Query.append("(latitude BETWEEN " +  (latitude - radio) + " and " + (latitude + radio) + " ) and (longitude BETWEEN " + (longitude - radio) + " and " + (longitude + radio) + ") " );
-            if(x != post.length -1)
+            if(x != post.size() -1)
             {
                 Query.append(" or ");
             }
