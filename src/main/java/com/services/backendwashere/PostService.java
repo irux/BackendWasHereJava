@@ -65,12 +65,16 @@ public class PostService {
     {
         
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
-         
+         System.out.println("The id to search is _: " + id);
         LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
         
-        Base.close();
+        
+        PostDB [] x = (PostDB[])listPost.toArray();
+        
+        System.out.println("I am Ready with the answer here");
          
-        return (PostDB[])listPost.toArray();
+        Base.close();
+        return x;
     }
     
     
