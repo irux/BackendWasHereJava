@@ -89,8 +89,8 @@ public class PostService {
         Query.append("SELECT * FROM `post` WHERE (type = 1 or type = 2) and ");
         
         for (int x = 0 ; x<post.size() ; x++) {
-            Long latitude = (Long)post.get(x).get("latitude");
-            Long longitude = (Long)post.get(x).get("longitude");
+            Float latitude = (Float)post.get(x).get("latitude");
+            Float longitude = (Float)post.get(x).get("longitude");
             
             Query.append("(latitude BETWEEN " +  (latitude - radio) + " and " + (latitude + radio) + " ) and (longitude BETWEEN " + (longitude - radio) + " and " + (longitude + radio) + ") " );
             if(x != post.size() -1)
