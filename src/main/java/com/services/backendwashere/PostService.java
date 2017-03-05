@@ -83,7 +83,7 @@ public class PostService {
         
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
         System.out.println("I am in the method of getpostByGPS");
-        float radio = 0.0005F;
+        float radio = 0.001F;
         StringBuilder Query = new StringBuilder();
         try{
         Query.append("SELECT * FROM `post` WHERE (type = 1 or type = 2) and (");
@@ -157,9 +157,11 @@ public class PostService {
     {
        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
        
+       Float radio = 0.001F;
+       
         System.out.println("I am getpotsbygps");
         
-        LazyList<PostDB> listOfFind = PostDB.findBySQL("SELECT * FROM `post` WHERE (type = 1 or type = 2) and (latitude BETWEEN " +  (latitude - 0.0005) + " and " + (latitude + 0.0005) + " ) and (longitude BETWEEN " + (longitude - 0.0005) + " and " + (longitude + 0.0005) + ") ORDER BY timestamp DESC");
+        LazyList<PostDB> listOfFind = PostDB.findBySQL("SELECT * FROM `post` WHERE (type = 1 or type = 2) and (latitude BETWEEN " +  (latitude - radio) + " and " + (latitude + radio) + " ) and (longitude BETWEEN " + (longitude - radio) + " and " + (longitude + radio) + ") ORDER BY timestamp DESC");
         
         
         
