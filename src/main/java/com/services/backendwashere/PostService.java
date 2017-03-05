@@ -76,6 +76,9 @@ public class PostService {
     
     public String getPostsByGPS(PostDB[] post)
     {
+        
+        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+        System.out.println("I am in the method of getpostByGPS");
         float radio = 0.0005F;
         StringBuilder Query = new StringBuilder();
         
@@ -99,7 +102,7 @@ public class PostService {
         
         System.out.println("Here is the query : " + Query);
         
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+        
          
         LazyList<PostDB> listPost = PostDB.findBySQL(Query.toString());
         
