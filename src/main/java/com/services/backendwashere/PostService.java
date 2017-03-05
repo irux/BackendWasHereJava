@@ -105,6 +105,8 @@ public class PostService {
         
         Query.append(" )");
         
+        Query.append(" ORDER BY timestamp DESC");
+        
         }
         catch(Exception e)
         {
@@ -157,7 +159,7 @@ public class PostService {
        
         System.out.println("I am getpotsbygps");
         
-        LazyList<PostDB> listOfFind = PostDB.findBySQL("SELECT * FROM `post` WHERE (type = 1 or type = 2) and (latitude BETWEEN " +  (latitude - 0.0005) + " and " + (latitude + 0.0005) + " ) and (longitude BETWEEN " + (longitude - 0.0005) + " and " + (longitude + 0.0005) + ")");
+        LazyList<PostDB> listOfFind = PostDB.findBySQL("SELECT * FROM `post` WHERE (type = 1 or type = 2) and (latitude BETWEEN " +  (latitude - 0.0005) + " and " + (latitude + 0.0005) + " ) and (longitude BETWEEN " + (longitude - 0.0005) + " and " + (longitude + 0.0005) + ") ORDER BY timestamp DESC");
         
         
         
