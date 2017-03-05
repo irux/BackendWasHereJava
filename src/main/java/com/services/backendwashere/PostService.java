@@ -86,7 +86,7 @@ public class PostService {
         float radio = 0.0005F;
         StringBuilder Query = new StringBuilder();
         try{
-        Query.append("SELECT * FROM `post` WHERE (type = 1 or type = 2) and ");
+        Query.append("SELECT * FROM `post` WHERE (type = 1 or type = 2) and (");
         
         for (int x = 0 ; x<post.size() ; x++) {
             Float latitude = (Float)post.get(x).get("latitude");
@@ -102,6 +102,8 @@ public class PostService {
 
             
         }
+        
+        Query.append(" )");
         
         }
         catch(Exception e)
