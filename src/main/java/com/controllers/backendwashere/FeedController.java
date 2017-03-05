@@ -135,18 +135,20 @@ public class FeedController {
             
              PostService postService = new PostService();
              
+             String json = null;
              
              switch(category.toLowerCase())
              {
                  case "here":
                      
-                     String json = postService.getPostsByGPS(longitude, latitude);
+                     json = postService.getPostsByGPS(longitude, latitude);
                      System.out.println("It is json for getFeedCategory " + json);
-                     return json;
+                     break ;
                  case "favorites":
+                     System.out.println("Ich bin bei favorites");
                      PostDB[] WhereIWas = postService.getPostByFBIDArray(userInfo.getUserID());
-                     String jsonFavorites = postService.getPostsByGPS(WhereIWas);
-                     return jsonFavorites;
+                     json = postService.getPostsByGPS(WhereIWas);
+                     break;
                      
                      
              }
@@ -225,7 +227,7 @@ public class FeedController {
             
            
             
-            return temporalRequest;
+            return json;
         };
         
         return FeedGeo;
