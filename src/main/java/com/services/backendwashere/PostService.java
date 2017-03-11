@@ -200,12 +200,12 @@ public class PostService {
             
             for (int i = 0; i < myFriends.getData().size() - 1; i++) {
                 query.append("idFB = ");
-                query.append(myFriends.getData().get(i));
+                query.append(myFriends.getData().get(i).getId());
                 query.append(" or ");
             }
             
             query.append("idFB = ");
-            query.append(myFriends.getData().get(myFriends.getData().size() - 1));
+            query.append(myFriends.getData().get(myFriends.getData().size() - 1).getId());
             query.append(")");
             
             System.out.println("Thats the query for friends post : " + query.toString());
