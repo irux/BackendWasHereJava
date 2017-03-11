@@ -5,8 +5,14 @@
  */
 package com.services.backendwashere;
 
+import com.google.gson.Gson;
 import com.pojos.backendwashere.PostDB;
 import com.pojos.backendwashere.PostPojo;
+import com.pojos.backendwashere.UserTokenAuth;
+import com.restfb.Connection;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.Version;
+import com.restfb.types.User;
 import java.util.List;
 import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.LazyList;
@@ -172,5 +178,51 @@ public class PostService {
         System.out.println("I am out :  getpotsbygps");
         return jsonAnswer;
     }
+    
+    public String getPostFriendsFromUser(UserTokenAuth user)
+    {
+        
+            
+            
+        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+
+            
+            
+            
+            
+            DefaultFacebookClient cliente = new DefaultFacebookClient(user.getAuthToken(),Version.LATEST);
+            Connection<User> myFriends = cliente.fetchConnection("me/friends", User.class);
+        
+        
+            StringBuilder query = new StringBuilder();
+            
+            query.append("SELECT * FROM `post` where (type=1 or type=2) and ( ");
+            
+            for (int i = 0; i < myFriends.getData().size() - 1; i++) {
+                query.append("idFB = ");
+                query.append(myFriends.getData().get(i));
+                query.append(" or ");
+            }
+            
+            query.append("idFB = ");
+            query.append(myFriends.getData().get(myFriends.getData().size() - 1));
+            query.append(")");
+            
+            
+            query.append(" ORDER BY timestamp DESC");
+            
+            
+            LazyList<PostDB> friendsPost = PostDB.findBySQL(query.toString());
+            
+            String data = friendsPost.toJson(true);
+            
+            System.out.println("Thats the query for friends post : " + data);
+            
+            
+            Base.close();
+        
+        return data;
+    }
+    
     
 }

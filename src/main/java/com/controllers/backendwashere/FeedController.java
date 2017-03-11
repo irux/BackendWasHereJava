@@ -10,6 +10,10 @@ import com.google.gson.JsonParser;
 import com.pojos.backendwashere.PostDB;
 import com.pojos.backendwashere.PostPojo;
 import com.pojos.backendwashere.UserTokenAuth;
+import com.restfb.Connection;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.Version;
+import com.restfb.types.User;
 import com.services.backendwashere.PostService;
 import com.services.backendwashere.TokenManagerService;
 import java.util.List;
@@ -22,6 +26,34 @@ import spark.Route;
  * @author Alejo
  */
 public class FeedController {
+    
+    public static Route getFriendFeed()
+    {
+        
+        Route friendFeed = (request,response) ->{
+          
+            Gson gson = new Gson();
+            
+            TokenManagerService tokenManager = new TokenManagerService();
+            
+            PostService service = new PostService();
+            
+            UserTokenAuth user = gson.fromJson(tokenManager.getInfoToken(request.headers("Authentication")), UserTokenAuth.class);
+            
+           String friendsPost =  service.getPostFriendsFromUser(user);
+            
+            
+            
+            return friendsPost;
+        };
+        
+        return friendFeed;
+        
+    }
+    
+    
+    
+    
     
     public static Route getFeedProfile()
     {
