@@ -188,7 +188,7 @@ public class PostService {
 
             
             
-            
+            System.out.println("That is the token for friends : " + user.getAuthToken());
             
             DefaultFacebookClient cliente = new DefaultFacebookClient(user.getAuthToken(),Version.LATEST);
             Connection<User> myFriends = cliente.fetchConnection("me/friends", User.class);
@@ -208,6 +208,7 @@ public class PostService {
             query.append(myFriends.getData().get(myFriends.getData().size() - 1));
             query.append(")");
             
+            System.out.println("Thats the query for friends post : " + query.toString());
             
             query.append(" ORDER BY timestamp DESC");
             
@@ -216,7 +217,7 @@ public class PostService {
             
             String data = friendsPost.toJson(true);
             
-            System.out.println("Thats the query for friends post : " + data);
+            
             
             
             Base.close();

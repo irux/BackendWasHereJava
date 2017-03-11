@@ -42,7 +42,7 @@ public class Main {
     get("/profile/feed",FeedController.getFeedProfile());
     get("/search/category/:category","application/json",FeedController.getFeedCategory());
     post("/post"    ,PostMakerController.makePost());
-    //get("/profile/friends/all/feed",FeedController.getFriendFeed());
+    get("/profile/friends/all/feed",FeedController.getFriendFeed());
     
     
 

@@ -40,6 +40,8 @@ public class FeedController {
             
             UserTokenAuth user = gson.fromJson(tokenManager.getInfoToken(request.headers("Authentication")), UserTokenAuth.class);
             
+            
+            System.out.println("I am going to get the post friends user");
            String friendsPost =  service.getPostFriendsFromUser(user);
             
             
