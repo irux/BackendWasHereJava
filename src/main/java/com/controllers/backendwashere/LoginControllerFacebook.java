@@ -38,7 +38,7 @@ public class LoginControllerFacebook {
 
                 User userFB = (User) loginService.getLastUserLogin();
 
-                UserDB userInDB = UserDB.findFirst("id = ?", Long.parseLong(userFB.getId()));
+                UserDB userInDB = UserDB.findFirst("idFB = ?", Long.parseLong(userFB.getId()));
 
                 System.out.println(userInDB);
 
