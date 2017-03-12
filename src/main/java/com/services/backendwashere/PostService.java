@@ -196,7 +196,7 @@ public class PostService {
         
             StringBuilder query = new StringBuilder();
             
-            query.append("SELECT * FROM `post` where (type=1 or type=2) and ( ");
+            query.append("SELECT * FROM `post` where (type=1 or type=2 or type=3) and ( ");
             
             for (int i = 0; i < myFriends.getData().size() - 1; i++) {
                 query.append("idFB = ");
