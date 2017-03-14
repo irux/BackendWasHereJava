@@ -17,6 +17,7 @@ import com.restfb.types.User;
 import com.services.backendwashere.PostService;
 import com.services.backendwashere.TokenManagerService;
 import java.util.List;
+import javax.sql.DataSource;
 import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.LazyList;
 import spark.Route;
@@ -27,7 +28,7 @@ import spark.Route;
  */
 public class FeedController {
     
-    public static Route getFriendFeed()
+    public static Route getFriendFeed(DataSource pool)
     {
         
         Route friendFeed = (request,response) ->{
@@ -36,7 +37,7 @@ public class FeedController {
             
             TokenManagerService tokenManager = new TokenManagerService();
             
-            PostService service = new PostService();
+            PostService service = new PostService(pool);
             
             UserTokenAuth user = gson.fromJson(tokenManager.getInfoToken(request.headers("Authentication")), UserTokenAuth.class);
             
@@ -57,7 +58,7 @@ public class FeedController {
     
     
     
-    public static Route getFeedProfile()
+    public static Route getFeedProfile(DataSource pool)
     {
         
             
@@ -86,7 +87,7 @@ public class FeedController {
             //System.out.println("here is the fb id : " + userInfo.getUserID());
                 
             
-            PostService postService = new PostService();
+            PostService postService = new PostService(pool);
             
             String answer = postService.getPostByFBID(userInfo.getUserID());
             
@@ -141,7 +142,7 @@ public class FeedController {
         
     }
     
-    public static Route getFeedCategory()
+    public static Route getFeedCategory(DataSource pool)
     {
         
         
@@ -167,7 +168,7 @@ public class FeedController {
             UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
             
             
-             PostService postService = new PostService();
+             PostService postService = new PostService(pool);
              
              String json = null;
              

@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Calendar;
 import javax.servlet.MultipartConfigElement;
+import javax.sql.DataSource;
 import spark.Route;
 
 /**
@@ -27,7 +28,7 @@ import spark.Route;
  */
 public class PostMakerController {
     
-    public static Route makePost()
+    public static Route makePost(DataSource pool)
     {
         
         
@@ -91,7 +92,7 @@ public class PostMakerController {
             
         }
             
-            PostService servicePostMaker = new PostService();
+            PostService servicePostMaker = new PostService(pool);
             
             servicePostMaker.saveIt(post);
             

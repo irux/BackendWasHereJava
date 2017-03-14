@@ -14,6 +14,7 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.Version;
 import com.restfb.types.User;
 import java.util.List;
+import javax.sql.DataSource;
 import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.LazyList;
 
@@ -23,14 +24,22 @@ import org.javalite.activejdbc.LazyList;
  */
 public class PostService {
 
-    public PostService() {
+    
+    DataSource pool;
+    
+    public PostService(DataSource pool) {
+    
+    this.pool = pool;
+    
     }
+
     
     
-    public boolean saveIt(PostPojo post)
+    
+    public  boolean saveIt(PostPojo post)
     {
         
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+        Base.open(pool);
 
         
         PostDB dbPostConnection = new PostDB();
@@ -70,8 +79,8 @@ public class PostService {
     public LazyList<PostDB> getPostByFBIDArray(long id)    
     {
         
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
-         //System.out.println("The id to search is _: " + id);
+        Base.open(pool);
+//System.out.println("The id to search is _: " + id);
         LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
         
         
@@ -87,7 +96,7 @@ public class PostService {
     public String getPostsByGPS(LazyList<PostDB> post)
     {
         
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+        Base.open(pool);
         //System.out.println("I am in the method of getpostByGPS");
         float radio = 0.001F;
         StringBuilder Query = new StringBuilder();
@@ -141,7 +150,7 @@ public class PostService {
     {
         
         //System.out.println("I Am Here -----");
-         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+      Base.open(pool);
          
          LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
             
@@ -161,7 +170,7 @@ public class PostService {
     
     public String getPostsByGPS(float longitude , float latitude)
     {
-       Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+       Base.open(pool);
        
        Float radio = 0.001F;
        
@@ -184,7 +193,7 @@ public class PostService {
         
             
             
-            Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+           Base.open(pool);
 
             
             

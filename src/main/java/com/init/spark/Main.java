@@ -20,16 +20,23 @@ import static spark.Spark.get;
 
 import com.services.backendwashere.InstagramLoginService;
 import com.interfaces.backendwashere.LoginService;
+import com.mchange.v2.c3p0.DataSources;
 import com.services.backendwashere.FacebookLoginService;
+import javax.sql.DataSource;
 import org.javalite.activejdbc.Base;
 
 public class Main {
 
-  public static void main(String[] args) {
+    
+    
+  public static void main(String[] args) throws SQLException {
 
     
      staticFiles.externalLocation("/root/usersWashere");
      staticFiles.expireTime(600);
+     
+     DataSource source = DataSources.unpooledDataSource("jdbc:mysql://46.101.191.24/washereDB", "root", "TUBerlin2016");
+     DataSource pool = DataSources.pooledDataSource(source);
       
     port(Integer.parseInt(System.getenv("PORTWASHERE")));
 
@@ -38,11 +45,11 @@ public class Main {
     get("/hello", (req,res) -> "HELLO WORLD");
     //get("/instagram/login",LoginController.login(servicioFacebook));
     get("/instagram/callback",LoginController.tokenManagment());
-    post("/login",LoginControllerFacebook.login(servicioFacebook));
-    get("/profile/feed",FeedController.getFeedProfile());
-    get("/search/category/:category","application/json",FeedController.getFeedCategory());
-    post("/post"    ,PostMakerController.makePost());
-    get("/profile/friends/all/feed",FeedController.getFriendFeed());
+    post("/login",LoginControllerFacebook.login(servicioFacebook,pool));
+    get("/profile/feed",FeedController.getFeedProfile(pool));
+    get("/search/category/:category","application/json",FeedController.getFeedCategory(pool));
+    post("/post"    ,PostMakerController.makePost(pool));
+    get("/profile/friends/all/feed",FeedController.getFriendFeed(pool));
     
     
 
