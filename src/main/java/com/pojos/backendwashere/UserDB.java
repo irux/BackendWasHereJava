@@ -6,6 +6,8 @@
 package com.pojos.backendwashere;
 
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.annotations.CompositePK;
+import org.javalite.activejdbc.annotations.IdName;
 import org.javalite.activejdbc.annotations.Table;
 
 /**
@@ -14,6 +16,8 @@ import org.javalite.activejdbc.annotations.Table;
  */
 
 @Table("user")
+//@IdName("idFB")
+@CompositePK({"idFB"})
 public class UserDB extends Model {
     
     
