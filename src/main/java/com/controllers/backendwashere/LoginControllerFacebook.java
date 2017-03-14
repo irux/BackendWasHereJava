@@ -88,6 +88,8 @@ public class LoginControllerFacebook {
 
             }
             
+            Base.close();
+            
             return "Error with login with FB";
 
         };

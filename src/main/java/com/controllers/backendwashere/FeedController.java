@@ -45,6 +45,11 @@ public class FeedController {
            // System.out.println("I am going to get the post friends user");
            String friendsPost =  service.getPostFriendsFromUser(user);
             
+           
+           service = null;
+           tokenManager = null;
+           gson = null;
+           user = null;
             
             
             return friendsPost;
@@ -92,6 +97,11 @@ public class FeedController {
             String answer = postService.getPostByFBID(userInfo.getUserID());
             
             
+            postService =null;
+            userInfo = null;
+            infoJson = null;
+            tokenManager = null;
+            gson = null;
             /*
             String answer = "[\n" +
 "        { post_id: 1, postType:\"video\", location:\"Kottbusser Tor\", long: 51.83733, lat: -8.3016, timestamp: 1 , likes: 12 },\n" +
@@ -190,75 +200,15 @@ public class FeedController {
              
              
              
-             
+             tokenManager = null;
+             postService = null;
+             userInfo = null;
+             gson = null;
+             category = null;
+             infoJson = null;
              
              
             
-            String temporalRequest = "[\n" +
-"            {\n" +
-"              post_id:1,\n" +
-"              type:\"video\",\n" +
-"              url:\"http://clips.vorwaerts-gmbh.de/VfE_html5.mp4\",\n" +
-"              username:\"Valentino\",\n" +
-"              likes:59,\n" +
-"              date:1473933055,\n" +
-"              location:'bar1',\n" +
-"              typeDetails:'video/mp4'\n" +
-"            },\n" +
-"            {\n" +
-"              post_id:3,\n" +
-"              type:\"img\",\n" +
-"              url:\"http://cdn.fansided.com/wp-content/blogs.dir/229/files/2013/12/706147-himym_renewed.jpg\",\n" +
-"              username:\"Valentino3\",\n" +
-"              likes:154,\n" +
-"              date:1473933055,\n" +
-"              location:'bar1',\n" +
-"              typeDetails:'img/png'\n" +
-"            },\n" +
-"            {\n" +
-"              post_id:3,\n" +
-"              type:\"img\",\n" +
-"              url:\"https://img.buzzfeed.com/buzzfeed-static/static/enhanced/terminal05/2012/10/27/5/enhanced-buzz-762-1351329772-1.jpg\",\n" +
-"              username:\"Ted\",\n" +
-"              likes:154,\n" +
-"              date:1473933055,\n" +
-"              location:'bar1',\n" +
-"              typeDetails:'img/jpg'\n" +
-"            },\n" +
-"            {\n" +
-"              post_id:3,\n" +
-"              type:\"img\",\n" +
-"              url:\"https://img.buzzfeed.com/buzzfeed-static/static/enhanced/web04/2012/10/27/5/enhanced-buzz-28331-1351329868-5.jpg\",\n" +
-"              username:\"Barney\",\n" +
-"              likes:154,\n" +
-"              date:1473933055,\n" +
-"              location:'bar1',\n" +
-"              typeDetails:'img/jpg'\n" +
-"            },\n" +
-"            {\n" +
-"              post_id:3,\n" +
-"              type:\"img\",\n" +
-"              url:\"https://img.buzzfeed.com/buzzfeed-static/static/enhanced/terminal05/2012/10/27/5/enhanced-buzz-778-1351329830-3.jpg\",\n" +
-"              username:\"Lilly\",\n" +
-"              likes:154,\n" +
-"              date:1473933055,\n" +
-"              location:'bar1',\n" +
-"              typeDetails:'img/jpg'\n" +
-"            },\n" +
-"            {\n" +
-"              post_id:3,\n" +
-"              type:\"img\",\n" +
-"              url:\"https://img.buzzfeed.com/buzzfeed-static/static/enhanced/web03/2012/10/27/5/enhanced-buzz-28846-1351329818-3.jpg\",\n" +
-"              username:\"Marshall\",\n" +
-"              likes:154,\n" +
-"              date:1473933055,\n" +
-"              location:'bar1',\n" +
-"              typeDetails:'img/jpg'\n" +
-"            }\n" +
-"        ]";
-            
-            
-            JsonParser parser = new JsonParser();
             
            
             

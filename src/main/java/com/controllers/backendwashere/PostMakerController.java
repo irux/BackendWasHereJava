@@ -96,6 +96,13 @@ public class PostMakerController {
             
             servicePostMaker.saveIt(post);
             
+            
+            serviceGeolocation = null;
+            servicePostMaker = null;
+            tokenManager = null;
+            infoTokenUser = null;
+            post = null;
+            Address = null;
                        
             
            // System.out.println(request.body());
@@ -103,7 +110,7 @@ public class PostMakerController {
             
             
             
-            return request.body();
+            return "Perfekt";
         };      
         
         return postRoute;
