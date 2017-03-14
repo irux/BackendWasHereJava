@@ -41,7 +41,7 @@ public class FeedController {
             UserTokenAuth user = gson.fromJson(tokenManager.getInfoToken(request.headers("Authentication")), UserTokenAuth.class);
             
             
-            System.out.println("I am going to get the post friends user");
+           // System.out.println("I am going to get the post friends user");
            String friendsPost =  service.getPostFriendsFromUser(user);
             
             
@@ -67,7 +67,7 @@ public class FeedController {
             Route feedProfile = (response,request) -> {
                 
                 
-                System.out.println("Ich Bin HIERRRRR");
+               // System.out.println("Ich Bin HIERRRRR");
                 
             
                 
@@ -79,11 +79,11 @@ public class FeedController {
             
             String infoJson = tokenManager.getInfoToken(response.headers("Authentication"));
            
-            System.out.println("Here is the token : " + response.headers("Authentication"));
+            //System.out.println("Here is the token : " + response.headers("Authentication"));
            
             UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
             
-            System.out.println("here is the fb id : " + userInfo.getUserID());
+            //System.out.println("here is the fb id : " + userInfo.getUserID());
                 
             
             PostService postService = new PostService();
@@ -149,14 +149,14 @@ public class FeedController {
             
             float latitude = Float.valueOf(request.queryParams("lat"));
             
-            System.out.println("Esta es latitud : " + latitude);
+           // System.out.println("Esta es latitud : " + latitude);
             
             float longitude = Float.valueOf(request.queryParams("long"));
-            System.out.println("Esta es la longitud : " + longitude);
+           // System.out.println("Esta es la longitud : " + longitude);
             
             String category = request.params(":category");
             
-            System.out.println("Esta es la categoria : " + category);
+           // System.out.println("Esta es la categoria : " + category);
             
             TokenManagerService tokenManager = new TokenManagerService();
             
@@ -176,10 +176,10 @@ public class FeedController {
                  case "here":
                      
                      json = postService.getPostsByGPS(longitude, latitude);
-                     System.out.println("It is json for getFeedCategory " + json);
+                   //  System.out.println("It is json for getFeedCategory " + json);
                      break ;
                  case "favorites":
-                     System.out.println("Ich bin bei favorites");
+                   //  System.out.println("Ich bin bei favorites");
                      LazyList<PostDB> WhereIWas = postService.getPostByFBIDArray(userInfo.getUserID());
                      json = postService.getPostsByGPS(WhereIWas);
                      break;

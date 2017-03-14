@@ -71,13 +71,13 @@ public class PostService {
     {
         
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
-         System.out.println("The id to search is _: " + id);
+         //System.out.println("The id to search is _: " + id);
         LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
         
         
        
         
-        System.out.println("I am Ready with the answer here");
+        //System.out.println("I am Ready with the answer here");
          
         Base.close();
         return listPost;
@@ -88,7 +88,7 @@ public class PostService {
     {
         
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
-        System.out.println("I am in the method of getpostByGPS");
+        //System.out.println("I am in the method of getpostByGPS");
         float radio = 0.001F;
         StringBuilder Query = new StringBuilder();
         try{
@@ -121,7 +121,7 @@ public class PostService {
         
         
         
-        System.out.println("Here is the query : " + Query);
+        //System.out.println("Here is the query : " + Query);
         
         
          
@@ -140,7 +140,7 @@ public class PostService {
     public String getPostByFBID(long id)
     {
         
-        System.out.println("I Am Here -----");
+        //System.out.println("I Am Here -----");
          Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
          
          LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
@@ -149,7 +149,7 @@ public class PostService {
             
             
             
-                System.out.println("here is the answer : " + jsonAnswer);
+                //System.out.println("here is the answer : " + jsonAnswer);
                 
                 Base.close();
          
@@ -165,7 +165,7 @@ public class PostService {
        
        Float radio = 0.001F;
        
-        System.out.println("I am getpotsbygps");
+       // System.out.println("I am getpotsbygps");
         
         LazyList<PostDB> listOfFind = PostDB.findBySQL("SELECT * FROM `post` WHERE (type = 1 or type = 2) and (latitude BETWEEN " +  (latitude - radio) + " and " + (latitude + radio) + " ) and (longitude BETWEEN " + (longitude - radio) + " and " + (longitude + radio) + ") ORDER BY timestamp DESC");
         
@@ -175,7 +175,7 @@ public class PostService {
        
         Base.close();
        
-        System.out.println("I am out :  getpotsbygps");
+       // System.out.println("I am out :  getpotsbygps");
         return jsonAnswer;
     }
     
@@ -188,7 +188,7 @@ public class PostService {
 
             
             
-            System.out.println("That is the token for friends : " + user.getAuthToken());
+            //System.out.println("That is the token for friends : " + user.getAuthToken());
             
             DefaultFacebookClient cliente = new DefaultFacebookClient(user.getAuthToken(),Version.LATEST);
             Connection<User> myFriends = cliente.fetchConnection("me/friends", User.class);
@@ -208,7 +208,7 @@ public class PostService {
             query.append(myFriends.getData().get(myFriends.getData().size() - 1).getId());
             query.append(")");
             
-            System.out.println("Thats the query for friends post : " + query.toString());
+            //System.out.println("Thats the query for friends post : " + query.toString());
             
             query.append(" ORDER BY timestamp DESC");
             

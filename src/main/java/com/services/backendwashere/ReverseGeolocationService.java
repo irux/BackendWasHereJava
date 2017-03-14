@@ -43,8 +43,8 @@ public class ReverseGeolocationService {
             GeocodingResult[] result;
         try {
             result = GeocodingApi.reverseGeocode(context, latitudLongitude).await();
-            System.out.println("Here the formattedAddress : " + result[0].formattedAddress);
-            System.out.println( "Here is with the split : " + result[0].formattedAddress.split(",")[0]);
+            //System.out.println("Here the formattedAddress : " + result[0].formattedAddress);
+           // System.out.println( "Here is with the split : " + result[0].formattedAddress.split(",")[0]);
             return result[0].formattedAddress.split(",")[0];
         } catch (Exception ex) {
             Logger.getLogger(ReverseGeolocationService.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,8 +118,8 @@ public class ReverseGeolocationService {
     public PlacePojo getReverseOpenStreetmap(float longitude,float latitude)
     {
         
-        System.out.println("Longitude : " + longitude);
-        System.out.println("latitude : " + latitude);
+        //System.out.println("Longitude : " + longitude);
+        //System.out.println("latitude : " + latitude);
         
         Gson gsonBuilder = new Gson();
         
@@ -137,15 +137,15 @@ public class ReverseGeolocationService {
             
         }
         
-        System.out.println("response value : " + response);
+        //System.out.println("response value : " + response);
         
         if(response != null)
         {
         PlacePojo place = null;
             try {
-                System.out.println("response.body : " + response.body().string());
+               // System.out.println("response.body : " + response.body().string());
                 place = gsonBuilder.fromJson(response.body().string(), PlacePojo.class);
-                System.out.println("I am already hier");
+               // System.out.println("I am already hier");
             } catch (IOException ex) {
                 System.err.println("Error : " + ex.getMessage());
             }

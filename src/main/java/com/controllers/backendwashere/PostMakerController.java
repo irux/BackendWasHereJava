@@ -57,7 +57,7 @@ public class PostMakerController {
         
         post.setName(Address);
         
-            System.out.println("here is name of address : " + post.getName());
+            //System.out.println("here is name of address : " + post.getName());
         
         TokenManagerService tokenManager = new TokenManagerService();
             
@@ -75,7 +75,7 @@ public class PostMakerController {
         }
         
         
-         System.out.println(post);
+         //System.out.println(post);
         
         if(post.getType() == 1 || post.getType() == 2)
         {
@@ -97,8 +97,8 @@ public class PostMakerController {
             
                        
             
-            System.out.println(request.body());
-            System.out.println("Here are the headers : " + request.headers());
+           // System.out.println(request.body());
+           // System.out.println("Here are the headers : " + request.headers());
             
             
             
