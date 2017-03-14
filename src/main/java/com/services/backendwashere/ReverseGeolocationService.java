@@ -47,7 +47,7 @@ public class ReverseGeolocationService {
            // System.out.println( "Here is with the split : " + result[0].formattedAddress.split(",")[0]);
             return result[0].formattedAddress.split(",")[0];
         } catch (Exception ex) {
-            Logger.getLogger(ReverseGeolocationService.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ReverseGeolocationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return null;
