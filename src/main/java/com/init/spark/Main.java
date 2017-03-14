@@ -24,6 +24,7 @@ import com.mchange.v2.c3p0.DataSources;
 import com.services.backendwashere.FacebookLoginService;
 import javax.sql.DataSource;
 import org.javalite.activejdbc.Base;
+import spark.debug.DebugScreen;
 
 public class Main {
 
@@ -55,7 +56,7 @@ public class Main {
     get("/profile/friends/all/feed",FeedController.getFriendFeed(pool));
     
     
-
+      DebugScreen.enableDebugScreen();
   }
 
 }
