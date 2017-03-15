@@ -31,10 +31,11 @@ public class PostMakerController {
     
     public static Route makePost(DataSource pool)
     {
-        Base.open(pool);
+       
         
         Route postRoute = (request,response) -> {
             
+             Base.open(pool);
             
         Gson gsonBuilder = new Gson();
         
@@ -109,13 +110,13 @@ public class PostMakerController {
            // System.out.println(request.body());
            // System.out.println("Here are the headers : " + request.headers());
             
-            
+             Base.close();
             
             return "Perfekt";
         };      
         
         
-        Base.close();
+       
         
         return postRoute;
     }

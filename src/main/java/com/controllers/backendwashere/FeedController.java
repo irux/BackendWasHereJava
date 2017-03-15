@@ -31,10 +31,12 @@ public class FeedController {
     public static Route getFriendFeed(DataSource pool)
     {
         
-        Base.open(pool);
+        
         
         Route friendFeed = (request,response) ->{
           
+            Base.open(pool);
+            
             Gson gson = new Gson();
             
             TokenManagerService tokenManager = new TokenManagerService();
@@ -71,11 +73,12 @@ public class FeedController {
     {
         
             
-       Base.open(pool);
+       
         
         
             Route feedProfile = (response,request) -> {
                 
+                Base.open(pool);
                 
                // System.out.println("Ich Bin HIERRRRR");
                 
@@ -145,6 +148,8 @@ public class FeedController {
 
 */
             
+            Base.close();
+            
            return answer;
             
              
@@ -152,7 +157,7 @@ public class FeedController {
         };
         
             
-            Base.close();
+            
         
         return feedProfile;
         
@@ -161,9 +166,11 @@ public class FeedController {
     public static Route getFeedCategory(DataSource pool)
     {
         
-        Base.open(pool);
+       
         
         Route FeedGeo = (request,response) -> {
+            
+             Base.open(pool);
             
             float latitude = Float.valueOf(request.queryParams("lat"));
             
@@ -217,12 +224,12 @@ public class FeedController {
              
             
             
-           
+           Base.close();
             
             return json;
         };
         
-        Base.close();
+       
         
         
         return FeedGeo;
