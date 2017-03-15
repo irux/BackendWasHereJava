@@ -39,7 +39,7 @@ public class Main {
      staticFiles.externalLocation("/root/usersWashere");
      staticFiles.expireTime(600);
      
-     DataSource source = DataSources.unpooledDataSource("jdbc:mysql://46.101.191.24/washereDB", "root", "TUBerlin2016");
+     DataSource source = DataSources.unpooledDataSource("jdbc:mysql://localhost/washereDB", "washere", "washere2017");
      DataSource pool = DataSources.pooledDataSource(source);
       
     port(Integer.parseInt(System.getenv("PORTWASHERE")));
