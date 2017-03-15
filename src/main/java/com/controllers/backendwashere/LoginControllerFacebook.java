@@ -26,11 +26,15 @@ import spark.Route;
  */
 public class LoginControllerFacebook {
 
-    public static Route login(LoginServiceToken loginService ,DataSource pool) {
+    public static Route login(DataSource pool) {
 
         Route loginFacebook = (request, response) -> {
 
+           
             Base.open(pool);
+            
+            
+            FacebookLoginService loginService = new FacebookLoginService();
             
             String tokenFromCliente = request.body();
             
