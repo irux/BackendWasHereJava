@@ -46,12 +46,12 @@ public class Main {
       
     port(Integer.parseInt(System.getenv("PORTWASHERE")));
 
-    FacebookLoginService servicioFacebook = new FacebookLoginService();
+   
     
     get("/hello", (req,res) -> "HELLO WORLD");
     //get("/instagram/login",LoginController.login(servicioFacebook));
     get("/instagram/callback",LoginController.tokenManagment());
-    post("/login",LoginControllerFacebook.login(servicioFacebook,pool));
+    post("/login",LoginControllerFacebook.login(pool));
     get("/profile/feed",FeedController.getFeedProfile(pool));
     get("/search/category/:category","application/json",FeedController.getFeedCategory(pool));
     post("/post"    ,PostMakerController.makePost(pool));
