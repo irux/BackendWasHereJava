@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.Calendar;
 import javax.servlet.MultipartConfigElement;
 import javax.sql.DataSource;
+import org.javalite.activejdbc.Base;
 import spark.Route;
 
 /**
@@ -30,7 +31,7 @@ public class PostMakerController {
     
     public static Route makePost(DataSource pool)
     {
-        
+        Base.open(pool);
         
         Route postRoute = (request,response) -> {
             
@@ -112,6 +113,9 @@ public class PostMakerController {
             
             return "Perfekt";
         };      
+        
+        
+        Base.close();
         
         return postRoute;
     }

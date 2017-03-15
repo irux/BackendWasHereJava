@@ -29,8 +29,16 @@ public class PostService {
     
     public PostService(DataSource pool) {
     
-    this.pool = pool;
+    //this.pool = pool;
     
+    
+    
+    }
+    
+    
+    public void destroyOperations()
+    {
+        Base.close();
     }
 
     
@@ -39,7 +47,7 @@ public class PostService {
     public  boolean saveIt(PostPojo post)
     {
         
-        Base.open(pool);
+        
 
         
         PostDB dbPostConnection = new PostDB();
@@ -68,7 +76,7 @@ public class PostService {
 
         
         
-        Base.close();
+        
         
         
         return true;
@@ -79,7 +87,7 @@ public class PostService {
     public LazyList<PostDB> getPostByFBIDArray(long id)    
     {
         
-        Base.open(pool);
+       // Base.open(pool);
 //System.out.println("The id to search is _: " + id);
         LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
         
@@ -88,7 +96,7 @@ public class PostService {
         
         //System.out.println("I am Ready with the answer here");
          
-        Base.close();
+        //Base.close();
         return listPost;
     }
     
@@ -96,7 +104,7 @@ public class PostService {
     public String getPostsByGPS(LazyList<PostDB> post)
     {
         
-        Base.open(pool);
+        //Base.open(pool);
         //System.out.println("I am in the method of getpostByGPS");
         float radio = 0.001F;
         StringBuilder Query = new StringBuilder();
@@ -139,7 +147,7 @@ public class PostService {
         String json = listPost.toJson(true);
         
         
-        Base.close();
+        //Base.close();
         
         return json;
         
@@ -170,7 +178,7 @@ public class PostService {
     
     public String getPostsByGPS(float longitude , float latitude)
     {
-       Base.open(pool);
+       //Base.open(pool);
        
        Float radio = 0.001F;
        
@@ -182,7 +190,7 @@ public class PostService {
         
         String jsonAnswer = listOfFind.toJson(true);
        
-        Base.close();
+        //Base.close();
        
        // System.out.println("I am out :  getpotsbygps");
         return jsonAnswer;
@@ -193,7 +201,7 @@ public class PostService {
         
             
             
-           Base.open(pool);
+           //Base.open(pool);
 
             
             
@@ -229,7 +237,7 @@ public class PostService {
             
             
             
-            Base.close();
+            //Base.close();
         
         return data;
     }

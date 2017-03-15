@@ -31,6 +31,8 @@ public class FeedController {
     public static Route getFriendFeed(DataSource pool)
     {
         
+        Base.open(pool);
+        
         Route friendFeed = (request,response) ->{
           
             Gson gson = new Gson();
@@ -55,6 +57,8 @@ public class FeedController {
             return friendsPost;
         };
         
+        Base.close();
+        
         return friendFeed;
         
     }
@@ -67,7 +71,7 @@ public class FeedController {
     {
         
             
-       
+       Base.open(pool);
         
         
             Route feedProfile = (response,request) -> {
@@ -147,6 +151,8 @@ public class FeedController {
             
         };
         
+            
+            Base.close();
         
         return feedProfile;
         
@@ -155,6 +161,7 @@ public class FeedController {
     public static Route getFeedCategory(DataSource pool)
     {
         
+        Base.open(pool);
         
         Route FeedGeo = (request,response) -> {
             
@@ -214,6 +221,9 @@ public class FeedController {
             
             return json;
         };
+        
+        Base.close();
+        
         
         return FeedGeo;
     }

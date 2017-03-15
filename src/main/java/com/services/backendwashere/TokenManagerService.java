@@ -25,7 +25,7 @@ public class TokenManagerService {
     public String getInfoToken(String info,DataSource pool)
     {
         
-        Base.open(pool);
+        //Base.open(pool);
         
         KeyDB keyForAuth = KeyDB.findFirst("keyService = ?", "AuthService");
         byte[] keyInBytes = keyForAuth.getBytes("keyBinary");
@@ -41,7 +41,7 @@ public class TokenManagerService {
         
             
             
-        Base.close();
+        //Base.close();
         return null;
     }
     
