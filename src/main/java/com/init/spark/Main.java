@@ -30,7 +30,7 @@ public class Main {
 
     
     
-  public static void main(String[] args) throws SQLException {
+  public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
       System.setProperty("com.mchange.v2.log.MLog", "com.mchange.v2.log.FallbackMLog");
       System.setProperty("com.mchange.v2.log.FallbackMLog.DEFAULT_CUTOFF_LEVEL", "WARNING");
@@ -38,7 +38,7 @@ public class Main {
     
      staticFiles.externalLocation("/root/usersWashere");
      staticFiles.expireTime(600);
-     
+     Class.forName("com.mysql.jdbc.Driver"); 
      DataSource source = DataSources.unpooledDataSource("jdbc:mysql://172.17.0.2/washereDB", "root", "TUBerlin2016");
      DataSource pool = DataSources.pooledDataSource(source);
      
