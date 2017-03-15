@@ -56,10 +56,12 @@ public class FeedController {
            user = null;
             
             
+           Base.close();
+           
             return friendsPost;
         };
         
-        Base.close();
+        
         
         return friendFeed;
         
