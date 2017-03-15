@@ -180,7 +180,7 @@ public class PostService {
     public String getPostsByGPS(float longitude , float latitude)
     {
        //Base.open(pool);
-       
+        //System.out.println("That is the id for postsbygps : " + Thread.currentThread().getId());
        Float radio = 0.001F;
        
        // System.out.println("I am getpotsbygps");

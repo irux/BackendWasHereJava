@@ -198,7 +198,7 @@ public class FeedController {
              
             String json = null;
             
-            System.out.println("That is the id for feedcategory : " + Thread.currentThread().getId());
+           // System.out.println("That is the id for feedcategory : " + Thread.currentThread().getId());
              
             switch(category.toLowerCase())
             {
