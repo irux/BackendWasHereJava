@@ -34,7 +34,7 @@ public class TokenManagerService {
         encryptionJSON.setKey(finalKey);
         try {
             encryptionJSON.setCompactSerialization(info);
-            Base.close();
+            //Base.close();
             return encryptionJSON.getPayload();
         } catch (Exception e) {
         }
