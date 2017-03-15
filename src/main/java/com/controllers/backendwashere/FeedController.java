@@ -190,14 +190,16 @@ public class FeedController {
             Gson gson = new Gson();
             
             UserTokenAuth userInfo = gson.fromJson(infoJson, UserTokenAuth.class);
+                   
             
+            PostService postService = new PostService(pool);
+             
+            String json = null;
             
-             PostService postService = new PostService(pool);
+            System.out.println("That is the id for feedcategory : " + Thread.currentThread().getId());
              
-             String json = null;
-             
-             switch(category.toLowerCase())
-             {
+            switch(category.toLowerCase())
+            {
                  case "here":
                      
                      json = postService.getPostsByGPS(longitude, latitude);
@@ -210,7 +212,7 @@ public class FeedController {
                      break;
                      
                      
-             }
+            }
              
              
              
