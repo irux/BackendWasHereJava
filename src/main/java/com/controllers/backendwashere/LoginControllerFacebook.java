@@ -84,6 +84,8 @@ public class LoginControllerFacebook {
                     userFB = null;
                     gsonSerialized = null;
                     userAuth = null;
+                      Base.close();
+       
                     return parser.parse("{token:" + AuthTokenFinal + "}");
                 } else {
                     Gson gsonSerialized = new Gson();
@@ -97,6 +99,8 @@ public class LoginControllerFacebook {
                     userInDB = null;
                     
                     //Base.close();
+                      Base.close();
+       
                     return parser.parse("{token:" + AuthTokenFinal + "}");
 
                     //return "Error with login Facebook";
@@ -106,8 +110,7 @@ public class LoginControllerFacebook {
 
             }
             
-             Base.close();
-       
+           
             
             return "Error with login with FB";
 
