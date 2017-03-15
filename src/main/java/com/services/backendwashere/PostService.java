@@ -158,7 +158,7 @@ public class PostService {
     {
         
         //System.out.println("I Am Here -----");
-      Base.open(pool);
+     // Base.open(pool);
          
          LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
             
