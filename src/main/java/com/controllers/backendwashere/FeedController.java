@@ -39,7 +39,7 @@ public class FeedController {
             
             PostService service = new PostService(pool);
             
-            UserTokenAuth user = gson.fromJson(tokenManager.getInfoToken(request.headers("Authentication")), UserTokenAuth.class);
+            UserTokenAuth user = gson.fromJson(tokenManager.getInfoToken(request.headers("Authentication"),pool), UserTokenAuth.class);
             
             
            // System.out.println("I am going to get the post friends user");
@@ -83,7 +83,7 @@ public class FeedController {
                 
             TokenManagerService tokenManager = new TokenManagerService();
             
-            String infoJson = tokenManager.getInfoToken(response.headers("Authentication"));
+            String infoJson = tokenManager.getInfoToken(response.headers("Authentication"),pool);
            
             //System.out.println("Here is the token : " + response.headers("Authentication"));
            
@@ -171,7 +171,7 @@ public class FeedController {
             
             TokenManagerService tokenManager = new TokenManagerService();
             
-            String infoJson = tokenManager.getInfoToken(request.headers("Authentication"));
+            String infoJson = tokenManager.getInfoToken(request.headers("Authentication"),pool);
             
             Gson gson = new Gson();
             

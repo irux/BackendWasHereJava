@@ -31,11 +31,13 @@ public class LoginControllerFacebook {
         Route loginFacebook = (request, response) -> {
 
             String tokenFromCliente = request.body();
-
+            
+            Base.open(pool);
+            
             boolean successful = loginService.login(tokenFromCliente);
 
             if (successful) {
-                Base.open(pool);
+                
 
                 User userFB = (User) loginService.getLastUserLogin();
 
@@ -62,7 +64,7 @@ public class LoginControllerFacebook {
 
                     } catch (Exception e) {
                         //System.err.println("Error en la transaccion : " + e.getMessage() + " " + e.getLocalizedMessage());
-                        Base.close();
+                        //Base.close();
                     }
 
                     Gson gsonSerialized = new Gson();
@@ -70,7 +72,10 @@ public class LoginControllerFacebook {
                     String userAuthString = gsonSerialized.toJson(userAuth);
                     JsonParser parser = new JsonParser();
                     String AuthTokenFinal = loginService.getTokenLogin(userAuthString);
-                    Base.close();
+                    //Base.close();
+                    userFB = null;
+                    gsonSerialized = null;
+                    userAuth = null;
                     return parser.parse("{token:" + AuthTokenFinal + "}");
                 } else {
                     Gson gsonSerialized = new Gson();
@@ -78,7 +83,12 @@ public class LoginControllerFacebook {
                     String userAuthString = gsonSerialized.toJson(userAuth);
                     JsonParser parser = new JsonParser();
                     String AuthTokenFinal = loginService.getTokenLogin(userAuthString);
-                    Base.close();
+                    gsonSerialized = null;
+                    userAuth = null;
+                    userFB = null;
+                    userInDB = null;
+                    
+                    //Base.close();
                     return parser.parse("{token:" + AuthTokenFinal + "}");
 
                     //return "Error with login Facebook";
@@ -88,11 +98,13 @@ public class LoginControllerFacebook {
 
             }
             
-            Base.close();
+            
             
             return "Error with login with FB";
 
         };
+        
+        Base.close();
 
         return loginFacebook;
     }

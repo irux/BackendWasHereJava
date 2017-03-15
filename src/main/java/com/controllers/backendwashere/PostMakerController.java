@@ -64,7 +64,7 @@ public class PostMakerController {
             
         String token = request.headers("Authentication");
             
-        UserTokenAuth infoTokenUser = gsonBuilder.fromJson(tokenManager.getInfoToken(token),UserTokenAuth.class);
+        UserTokenAuth infoTokenUser = gsonBuilder.fromJson(tokenManager.getInfoToken(token,pool),UserTokenAuth.class);
         
         post.setFBId(infoTokenUser.getUserID());
         

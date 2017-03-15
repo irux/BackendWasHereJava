@@ -7,6 +7,7 @@ package com.services.backendwashere;
 
 import com.pojos.backendwashere.KeyDB;
 import java.security.Key;
+import javax.sql.DataSource;
 import org.javalite.activejdbc.Base;
 import org.jose4j.jwe.JsonWebEncryption;
 import org.jose4j.keys.AesKey;
@@ -21,10 +22,10 @@ public class TokenManagerService {
     }
     
     
-    public String getInfoToken(String info)
+    public String getInfoToken(String info,DataSource pool)
     {
         
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/washereDB", "root", "TUBerlin2016");
+        Base.open(pool);
         
         KeyDB keyForAuth = KeyDB.findFirst("keyService = ?", "AuthService");
         byte[] keyInBytes = keyForAuth.getBytes("keyBinary");
@@ -38,9 +39,12 @@ public class TokenManagerService {
         } catch (Exception e) {
         }
         
+            
+            
         Base.close();
         return null;
     }
+    
     
     
 }
