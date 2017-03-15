@@ -38,7 +38,8 @@ public class PostService {
     
     public void destroyOperations()
     {
-        Base.close();
+
+
     }
 
     
@@ -162,13 +163,13 @@ public class PostService {
          
          LazyList<PostDB> listPost = PostDB.where("idFB = ?",id);
             
-            String jsonAnswer = listPost.toJson(true);
+         String jsonAnswer = listPost.toJson(true);
             
             
             
-                //System.out.println("here is the answer : " + jsonAnswer);
+         //System.out.println("here is the answer : " + jsonAnswer);
                 
-                Base.close();
+     //Base.close();
          
          return jsonAnswer;
          
