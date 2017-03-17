@@ -204,13 +204,41 @@ public class PostService {
             
            //Base.open(pool);
 
-            
+            System.out.println("Verifying of something is null");
             
             //System.out.println("That is the token for friends : " + user.getAuthToken());
+             if(user == null)
+            {
+                System.out.println("User es nulo");
+            }
+            
+            
             
             DefaultFacebookClient cliente = new DefaultFacebookClient(user.getAuthToken(),Version.LATEST);
+            
+            if(cliente == null)
+            {
+                System.out.println("Cliente es nulo");
+            }
+            
             Connection<User> myFriends = cliente.fetchConnection("me/friends", User.class);
         
+            
+             if(myFriends == null)
+            {
+                System.out.println("myFriends es nulo");
+            }
+            
+             
+            
+             if(myFriends.getData() == null)
+            {
+                System.out.println("Getdata myFriends is null");
+            }
+            
+             
+             
+            
         
             StringBuilder query = new StringBuilder();
             
@@ -232,6 +260,13 @@ public class PostService {
             
             
             LazyList<PostDB> friendsPost = PostDB.findBySQL(query.toString());
+            
+            
+             if(friendsPost == null)
+            {
+                System.out.println("friendsPost es nulo");
+            }
+            
             
             String data = friendsPost.toJson(true);
             
