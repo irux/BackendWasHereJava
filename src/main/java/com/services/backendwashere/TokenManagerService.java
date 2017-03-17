@@ -22,7 +22,7 @@ public class TokenManagerService {
     }
     
     
-    public String getInfoToken(String info,DataSource pool)
+    public String getInfoToken(String info)
     {
         
         //Base.open(pool);
@@ -37,6 +37,9 @@ public class TokenManagerService {
             //Base.close();
             return encryptionJSON.getPayload();
         } catch (Exception e) {
+            
+            System.err.println("Error en la parte de deserializacion : " + e.getMessage());
+            
         }
         
             
