@@ -204,7 +204,7 @@ public class PostService {
             
            //Base.open(pool);
 
-            System.out.println("Verifying of something is null");
+            //System.out.println("Verifying of something is null");
             
             //System.out.println("That is the token for friends : " + user.getAuthToken());
             
