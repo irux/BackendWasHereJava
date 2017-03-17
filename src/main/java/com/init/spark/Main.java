@@ -39,6 +39,8 @@ public class Main {
     
      staticFiles.externalLocation("/root/usersWashere");
      staticFiles.expireTime(600);
+     
+     
      Class.forName("com.mysql.jdbc.Driver"); 
      
      ComboPooledDataSource pool = new ComboPooledDataSource();
@@ -46,7 +48,7 @@ public class Main {
         pool.setJdbcUrl("jdbc:mysql://172.17.0.2/washereDB");
         pool.setUser("root");
         pool.setPassword("TUBerlin2016");
-        pool.setMinPoolSize(6);
+        pool.setMinPoolSize(10);
         pool.setMaxPoolSize(15);
                 
                 
