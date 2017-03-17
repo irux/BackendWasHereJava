@@ -109,6 +109,12 @@ public class LoginControllerFacebook {
                 
 
             }
+            else
+            {
+                Base.close();
+            }
+            
+            
             
            
             
