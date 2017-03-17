@@ -20,6 +20,7 @@ import static spark.Spark.get;
 
 import com.services.backendwashere.InstagramLoginService;
 import com.interfaces.backendwashere.LoginService;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.DataSources;
 import com.services.backendwashere.FacebookLoginService;
 import javax.sql.DataSource;
@@ -32,15 +33,24 @@ public class Main {
     
   public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-      System.setProperty("com.mchange.v2.log.MLog", "com.mchange.v2.log.FallbackMLog");
-      System.setProperty("com.mchange.v2.log.FallbackMLog.DEFAULT_CUTOFF_LEVEL", "WARNING");
-
+      
     
      staticFiles.externalLocation("/root/usersWashere");
      staticFiles.expireTime(600);
      Class.forName("com.mysql.jdbc.Driver"); 
-     DataSource source = DataSources.unpooledDataSource("jdbc:mysql://172.17.0.2/washereDB", "root", "TUBerlin2016");
-     DataSource pool = DataSources.pooledDataSource(source);
+     
+     ComboPooledDataSource pool = new ComboPooledDataSource();
+     
+        pool.setJdbcUrl("jdbc:mysql://172.17.0.2/washereDB");
+        pool.setUser("root");
+        pool.setPassword("TUBerlin2016");
+        pool.setMinPoolSize(6);
+        pool.setMaxPoolSize(15);
+                
+                
+                
+     //DataSource source = DataSources.unpooledDataSource("jdbc:mysql://172.17.0.2/washereDB", "root", "TUBerlin2016");
+     //DataSource pool = DataSources.pooledDataSource(source);
      
      
       
