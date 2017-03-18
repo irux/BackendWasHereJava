@@ -34,7 +34,7 @@ public class PostMakerController {
        
         
         Route postRoute = (request,response) -> {
-            
+            try{
              Base.open(pool);
             
         Gson gsonBuilder = new Gson();
@@ -110,14 +110,26 @@ public class PostMakerController {
            // System.out.println(request.body());
            // System.out.println("Here are the headers : " + request.headers());
             
-             Base.close();
+             //Base.close();
             
             return "Perfekt";
+            
+            }
+            catch(Exception e)
+            {
+                
+                
+            }
+            finally{
+                Base.close();
+            }
+            
+            return "ReallyBad";
         };      
         
         
        
-        
+       
         return postRoute;
     }
     
