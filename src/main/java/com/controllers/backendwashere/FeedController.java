@@ -34,7 +34,7 @@ public class FeedController {
         
         
         Route friendFeed = (request,response) ->{
-          
+          try{
             Base.open(pool);
             
             Gson gson = new Gson();
@@ -56,9 +56,22 @@ public class FeedController {
            user = null;
             
             
-           Base.close();
+           ///Base.close();
            
-            return friendsPost;
+           return friendsPost;
+          }
+          catch(Exception e)
+          {
+              e.printStackTrace();
+              
+          }
+          finally{
+              Base.close();
+          }
+          
+          return null;
+           
+            
         };
         
         
@@ -79,7 +92,7 @@ public class FeedController {
         
         
             Route feedProfile = (response,request) -> {
-                
+                try{
                 Base.open(pool);
                 
                // System.out.println("Ich Bin HIERRRRR");
@@ -150,11 +163,18 @@ public class FeedController {
 
 */
             
-            Base.close();
+            //Base.close();
             
            return answer;
-            
-             
+                }
+                catch(Exception e){
+                    
+                }
+                finally{
+                    Base.close();
+                }
+                        
+             return null;
             
         };
         
@@ -171,6 +191,8 @@ public class FeedController {
        
         
         Route FeedGeo = (request,response) -> {
+            
+            try{
             
              Base.open(pool);
             
@@ -228,9 +250,20 @@ public class FeedController {
              
             
             
-           Base.close();
+           //Base.close();
             
             return json;
+            }
+            catch(Exception e)
+            {
+                
+            }
+            finally{
+                Base.close();
+            }
+            
+            return null;
+            
         };
         
        
